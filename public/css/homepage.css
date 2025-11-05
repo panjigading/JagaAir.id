@@ -179,82 +179,164 @@ body {
   line-height: 57.6px;
 }
 
+/* ===== Alur Section - Interactive Cards ===== */
 .alur-section {
   padding: 120px 40px;
   background-color: var(--bg-light);
+  position: relative;
+  overflow: hidden;
 }
 
-.alur-container {
+.alur-container-new {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  max-width: 1200px;
+  gap: 20px; /* Dikurangi dari 30px ke 20px */
+  max-width: 1400px;
   margin: 0 auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* PENTING: Ubah dari wrap ke nowrap */
 }
 
-.alur-item {
-  flex: 1;
-  min-width: 200px;
-  max-width: 250px;
-  text-align: center;
-  padding: 30px 20px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: var(--shadow-sm);
-  opacity: 0;
-  transform: translateY(30px);
-  transition: var(--transition);
+.alur-card-interactive {
+  position: relative;
+  width: 220px; /* Dikurangi dari 280px ke 220px */
+  height: 280px; /* Dikurangi dari 320px ke 280px */
+  perspective: 1000px;
+  cursor: pointer;
+  flex-shrink: 0; /* TAMBAHAN: Mencegah card mengecil */
 }
 
-.alur-item:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-md);
+.alur-card-front,
+.alur-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  padding: 30px 20px; /* Dikurangi dari 40px 30px ke 30px 20px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.6s ease;
 }
 
-.alur-icon {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 20px;
+.alur-card-front {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+  border: 2px solid var(--border-color);
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.alur-card-back {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #4a90e2 100%);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.alur-card-interactive:hover .alur-card-front {
+  transform: rotateY(-180deg);
+}
+
+.alur-card-interactive:hover .alur-card-back {
+  transform: rotateY(0deg);
+}
+
+.step-number {
+  position: absolute;
+  top: 15px; /* Dikurangi dari 20px ke 15px */
+  right: 15px; /* Dikurangi dari 20px ke 15px */
+  width: 40px; /* Dikurangi dari 45px ke 40px */
+  height: 40px; /* Dikurangi dari 45px ke 40px */
   background: linear-gradient(135deg, var(--primary-color), #4a90e2);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 20px; /* Dikurangi dari 22px ke 20px */
   font-weight: bold;
+  box-shadow: 0 4px 15px rgba(118, 214, 255, 0.4);
 }
 
-.alur-heading {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: var(--text-dark);
+.step-number-back {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
 }
 
-.alur-text {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.5;
-}
-
-.alur-arrow {
-  font-size: 28px;
+.step-icon {
+  width: 90px; /* Dikurangi dari 120px ke 90px */
+  height: 90px; /* Dikurangi dari 120px ke 90px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--primary-color);
-  font-weight: bold;
-  opacity: 0.5;
-  animation: pulse 2s infinite;
+  margin-bottom: 15px; /* Dikurangi dari 20px ke 15px */
+  transition: all 0.3s ease;
 }
 
-@keyframes pulse {
+.step-icon svg {
+  width: 70px; /* TAMBAHAN: Explicit size untuk SVG */
+  height: 70px;
+}
+
+.step-title {
+  font-size: 20px; /* Dikurangi dari 24px ke 20px */
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: center;
+  margin-top: 8px; /* Dikurangi dari 10px ke 8px */
+}
+
+.step-description {
+  font-size: 14px; /* Dikurangi dari 16px ke 14px */
+  line-height: 1.5; /* Dikurangi dari 1.6 ke 1.5 */
+  text-align: center;
+  color: white;
+  padding: 0 10px;
+}
+
+.alur-arrow-new {
+  color: var(--primary-color);
+  opacity: 0.6;
+  animation: arrowBounce 2s ease-in-out infinite;
+  flex-shrink: 0; /* TAMBAHAN: Mencegah arrow mengecil */
+}
+
+@keyframes arrowBounce {
   0%, 100% {
     transform: translateX(0);
   }
   50% {
-    transform: translateX(8px);
+    transform: translateX(10px);
   }
+}
+
+.alur-arrow-new svg {
+  filter: drop-shadow(0 2px 8px rgba(118, 214, 255, 0.3));
+  width: 35px; /* Dikurangi dari 40px ke 35px */
+  height: 35px;
+}
+
+.alur-card-interactive:hover {
+  transform: translateY(-10px);
+}
+
+.alur-card-interactive:hover .step-icon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .keunggulan-section {
@@ -661,8 +743,38 @@ body {
     font-size: 36px;
   }
 
-  .alur-container {
-    flex-direction: column;
+  .alur-container-new {
+    flex-direction: column; 
+    gap: 20px;
+    flex-wrap: wrap; 
+  }
+
+  .alur-card-interactive {
+    width: 100%;
+    max-width: 300px;
+    height: 260px;
+  }
+
+  .alur-arrow-new {
+    transform: rotate(90deg);
+  }
+
+  .step-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .step-icon svg {
+    width: 55px;
+    height: 55px;
+  }
+
+  .step-title {
+    font-size: 18px;
+  }
+
+  .step-description {
+    font-size: 13px;
   }
 
   .keunggulan-grid {
@@ -742,5 +854,16 @@ body {
   
   .stat-number {
     font-size: 36px;
+  }
+
+  .alur-card-interactive {
+    height: 240px;
+  }
+
+  .step-number,
+  .step-number-back {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
   }
 }

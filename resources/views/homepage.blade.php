@@ -79,32 +79,110 @@
     </div>
   </section>
 
+  <!-- Section Alur Pelaporan -->
   <section id="alur" class="alur-section">
     <h2 class="section-title">Alur Pelaporan</h2>
-    <div class="alur-container">
-      <div class="alur-item">
-        <div class="alur-icon">1</div>
-        <h3 class="alur-heading">Lapor Masalah</h3>
-        <p class="alur-text">Laporkan masalah air bersih di sekitar Anda melalui aplikasi kami</p>
+    <div class="alur-container-new">
+      
+      <!-- Card 1: Lapor Masalah -->
+      <div class="alur-card-interactive" data-step="1">
+        <div class="alur-card-front">
+          <div class="step-number">1</div>
+          <div class="step-icon">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <h3 class="step-title">Lapor Masalah</h3>
+        </div>
+        <div class="alur-card-back">
+          <div class="step-number-back">1</div>
+          <p class="step-description">Isi formulir dengan detail lengkap tentang keluhan atau aspirasi Anda</p>
+        </div>
       </div>
-      <div class="alur-arrow">→</div>
-      <div class="alur-item">
-        <div class="alur-icon">2</div>
-        <h3 class="alur-heading">Verifikasi</h3>
-        <p class="alur-text">Tim kami akan memverifikasi laporan Anda dalam waktu 24 jam</p>
+
+      <!-- Arrow Separator -->
+      <div class="alur-arrow-new">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
       </div>
-      <div class="alur-arrow">→</div>
-      <div class="alur-item">
-        <div class="alur-icon">3</div>
-        <h3 class="alur-heading">Penanganan</h3>
-        <p class="alur-text">Pemerintah akan menangani dan memberikan solusi</p>
+
+      <!-- Card 2: Verifikasi -->
+      <div class="alur-card-interactive" data-step="2">
+        <div class="alur-card-front">
+          <div class="step-number">2</div>
+          <div class="step-icon">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h3 class="step-title">Verifikasi</h3>
+        </div>
+        <div class="alur-card-back">
+          <div class="step-number-back">2</div>
+          <p class="step-description">Tim kami akan memverifikasi dan memproses laporan Anda</p>
+        </div>
       </div>
-      <div class="alur-arrow">→</div>
-      <div class="alur-item">
-        <div class="alur-icon">4</div>
-        <h3 class="alur-heading">Selesai</h3>
-        <p class="alur-text">Laporan ditandai selesai dan Anda akan menerima notifikasi</p>
+
+      <!-- Arrow Separator -->
+      <div class="alur-arrow-new">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
       </div>
+
+      <!-- Card 3: Penanganan -->
+      <div class="alur-card-interactive" data-step="3">
+        <div class="alur-card-front">
+          <div class="step-number">3</div>
+          <div class="step-icon">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+          </div>
+          <h3 class="step-title">Penanganan</h3>
+        </div>
+        <div class="alur-card-back">
+          <div class="step-number-back">3</div>
+          <p class="step-description">Instansi terkait akan menindaklanjuti laporan Anda</p>
+        </div>
+      </div>
+
+      <!-- Arrow Separator -->
+      <div class="alur-arrow-new">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </div>
+
+      <!-- Card 4: Selesai -->
+      <div class="alur-card-interactive" data-step="4">
+        <div class="alur-card-front">
+          <div class="step-number">4</div>
+          <div class="step-icon">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+          </div>
+          <h3 class="step-title">Selesai</h3>
+        </div>
+        <div class="alur-card-back">
+          <div class="step-number-back">4</div>
+          <p class="step-description">Laporan ditandai selesai dan Anda akan menerima notifikasi</p>
+        </div>
+      </div>
+
     </div>
   </section>
 

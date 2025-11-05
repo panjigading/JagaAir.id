@@ -66,22 +66,92 @@ function initHeroAnimations() {
 }
 
 function initScrollAnimations() {
-  gsap.utils.toArray('.alur-item').forEach((item, index) => {
-    gsap.to(item, {
+  // ===== ANIMASI UNTUK ALUR CARDS (BARU) =====
+  gsap.utils.toArray('.alur-card-interactive').forEach((card, index) => {
+    // Animasi munculnya card
+    gsap.from(card, {
       scrollTrigger: {
-        trigger: item,
+        trigger: card,
         start: 'top 80%',
         toggleActions: 'play none none reverse',
         once: false
       },
-      opacity: 1,
-      y: 0,
+      opacity: 0,
+      y: 80,
+      scale: 0.8,
+      rotation: -10,
+      duration: 0.8,
+      delay: index * 0.15,
+      ease: 'back.out(1.7)'
+    });
+
+    // Hover interaction dengan GSAP
+    const stepIcon = card.querySelector('.step-icon');
+    const cardFront = card.querySelector('.alur-card-front');
+    const cardBack = card.querySelector('.alur-card-back');
+
+    card.addEventListener('mouseenter', () => {
+      // Animasi flip card
+      gsap.to(cardFront, {
+        rotateY: -180,
+        duration: 0.6,
+        ease: 'power2.inOut'
+      });
+      
+      gsap.to(cardBack, {
+        rotateY: 0,
+        duration: 0.6,
+        ease: 'power2.inOut'
+      });
+
+      // Scale effect
+      gsap.to(card, {
+        scale: 1.05,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      // Kembalikan ke posisi semula
+      gsap.to(cardFront, {
+        rotateY: 0,
+        duration: 0.6,
+        ease: 'power2.inOut'
+      });
+      
+      gsap.to(cardBack, {
+        rotateY: 180,
+        duration: 0.6,
+        ease: 'power2.inOut'
+      });
+
+      gsap.to(card, {
+        scale: 1,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+  });
+
+  // Animasi untuk arrows
+  gsap.utils.toArray('.alur-arrow-new').forEach((arrow, index) => {
+    gsap.from(arrow, {
+      scrollTrigger: {
+        trigger: arrow,
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+        once: false
+      },
+      opacity: 0,
+      x: -30,
       duration: 0.6,
-      delay: index * 0.1,
+      delay: index * 0.15 + 0.3,
       ease: 'power2.out'
     });
   });
 
+  // Animasi existing tetap ada (keunggulan-card, laporan-form, dll)
   gsap.utils.toArray('.keunggulan-card').forEach((card, index) => {
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -105,6 +175,7 @@ function initScrollAnimations() {
       }, 0);
   });
 
+  // ... sisanya tetap sama (laporan-form-wrapper, form-group, footer-column)
   gsap.to('.laporan-form-wrapper', {
     scrollTrigger: {
       trigger: '.laporan-form-wrapper',
