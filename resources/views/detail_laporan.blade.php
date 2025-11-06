@@ -105,7 +105,7 @@
             <main class="p-8 max-w-7xl mx-auto">
                 <section>
                     <div class="bg-white rounded-2xl shadow-xl p-6">
-                        <h3 class="text-lg font-medium mb-4">Detail Laporan</h3>
+                        <h3 class="text-2xl font-bold mb-4">Detail Laporan</h3>
 
                         @php
                             // sample fallback data
