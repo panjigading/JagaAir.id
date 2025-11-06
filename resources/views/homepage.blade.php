@@ -2,7 +2,12 @@
 <div class="homepage-wrapper">
 
   <div class="hero-section">
-    <div class="hero-background"></div>
+    <div class="hero-background-slider">
+      <div class="hero-background hero-bg-1 active"></div>
+      <div class="hero-background hero-bg-2"></div>
+      <div class="hero-background hero-bg-3"></div>
+      <div class="hero-overlay"></div>
+    </div>
 
     <nav class="navbar">
       <div class="navbar-container">
@@ -12,7 +17,7 @@
         </div>
         <ul class="navbar-menu">
           <li><a href="#alur" class="nav-link">Beranda</a></li>
-          <li><a href="#keunggulan" class="nav-link">Buat Laporan</a></li>
+          <li><a href="#laporan" class="nav-link">Buat Laporan</a></li>
           <li><a href="#laporan" class="nav-link">Cari Laporan</a></li>
           <li><a href="#hubungi" class="nav-link">Saran</a></li>
         </ul>
@@ -21,8 +26,46 @@
     </nav>
 
     <div class="hero-content">
-      <h1 class="hero-title">JagaAir.ID</h1>
+      <!-- Animated Background untuk Title -->
+      <div class="title-background-animated">
+        <div class="bg-wave wave-1"></div>
+        <div class="bg-wave wave-2"></div>
+        <div class="bg-wave wave-3"></div>
+      </div>
+      
+      <!-- Title dengan wrapper untuk animasi -->
+      <div class="hero-title-wrapper">
+        <h1 class="hero-title">
+          <span class="title-letter">J</span>
+          <span class="title-letter">a</span>
+          <span class="title-letter">g</span>
+          <span class="title-letter">a</span>
+          <span class="title-letter">A</span>
+          <span class="title-letter">i</span>
+          <span class="title-letter">r</span>
+          <span class="title-letter">.</span>
+          <span class="title-letter">I</span>
+          <span class="title-letter">D</span>
+        </h1>
+      </div>
+      
       <p class="hero-subtitle">Platform untuk melaporkan dan memantau penanganan masalah air bersih di Kota Malang</p>
+      
+      <!-- CTA Button dengan animasi -->
+      <div class="hero-cta">
+        <a href="#laporan" class="btn-cta-primary">
+          <span class="btn-text">Buat Laporan</span>
+          <span class="btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+        </a>
+        <a href="#alur" class="btn-cta-secondary">
+          <span class="btn-text">Pelajari Lebih Lanjut</span>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -285,7 +328,7 @@
       </div>
 </div>
 <div class="footer-bottom">
-  <p class="footer-copyright">&copy; 2024 JagaAir.ID. All rights reserved.</p>
+  <p class="footer-copyright">&copy; 2024 JagaAir.ID. All rights reserved.</p>
 </div>
 </footer>
 </div> {{-- Ini penutup .homepage-wrapper --}}

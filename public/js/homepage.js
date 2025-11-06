@@ -3,6 +3,7 @@ gsap.registerPlugin(ScrollTrigger);
 document.addEventListener('DOMContentLoaded', function() {
 
   initHeroAnimations();
+  initBackgroundSlider();
   initScrollAnimations();
   initInteractiveElements();
   initSmoothScroll();
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initHeroAnimations() {
   const tl = gsap.timeline();
 
+  // Animasi Navbar
   tl.to('.navbar-brand', {
     duration: 0.8,
     opacity: 1,
@@ -31,38 +33,150 @@ function initHeroAnimations() {
       ease: 'power2.out'
     }, 0.2);
 
-  gsap.to('.hero-content', {
+  // Animasi Background Waves
+  gsap.to('.wave-1', {
+    scale: 1.2,
+    x: 30,
+    y: -30,
+    duration: 8,
+    ease: 'sine.inOut',
+    yoyo: true,
+    repeat: -1
+  });
+
+  gsap.to('.wave-2', {
+    scale: 1.3,
+    x: -30,
+    y: 30,
+    duration: 10,
+    ease: 'sine.inOut',
+    yoyo: true,
+    repeat: -1
+  });
+
+  gsap.to('.wave-3', {
+    scale: 1.15,
+    x: 20,
+    y: 40,
+    duration: 12,
+    ease: 'sine.inOut',
+    yoyo: true,
+    repeat: -1
+  });
+
+  // Animasi Title Letter by Letter
+  gsap.to('.title-letter', {
     opacity: 1,
     y: 0,
-    duration: 1,
-    ease: 'power2.out',
+    rotateX: 0,
+    duration: 0.8,
+    stagger: 0.05,
+    ease: 'back.out(1.7)',
     delay: 0.5
   });
 
+  // Animasi Floating untuk Title
   gsap.to('.hero-title', {
-    duration: 1.2,
-    opacity: 1,
-    y: 0,
-    ease: 'back.out(1.7)',
-    delay: 0.6
+    y: -15,
+    duration: 3,
+    ease: 'sine.inOut',
+    yoyo: true,
+    repeat: -1,
+    delay: 2
   });
 
+  // Animasi Subtitle
   gsap.to('.hero-subtitle', {
     duration: 1,
     opacity: 1,
     y: 0,
     ease: 'power2.out',
-    delay: 0.8
+    delay: 1.5
   });
 
-  gsap.to('.hero-title', {
-    y: -20,
-    duration: 4,
+  // Animasi CTA Buttons
+  gsap.to('.hero-cta', {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    ease: 'back.out(1.7)',
+    delay: 2
+  });
+
+  // Particle effect animation
+  gsap.to('.hero-section::after', {
+    opacity: 0.6,
+    duration: 20,
     ease: 'sine.inOut',
     yoyo: true,
-    repeat: -1,
-    delay: 1.8
+    repeat: -1
   });
+}
+
+function initBackgroundSlider() {
+  const backgrounds = document.querySelectorAll('.hero-background');
+  let currentIndex = 0;
+  const totalSlides = backgrounds.length;
+  const slideInterval = 5000; // Ganti setiap 5 detik
+
+  function showSlide(index) {
+    // Hide all backgrounds
+    backgrounds.forEach((bg, i) => {
+      if (i === index) {
+        // Show current slide with GSAP animation
+        gsap.to(bg, {
+          opacity: 1,
+          scale: 1,
+          duration: 2,
+          ease: 'power2.out',
+          onStart: () => {
+            bg.classList.add('active');
+          }
+        });
+
+        // Zoom effect selama slide ditampilkan
+        gsap.to(bg, {
+          scale: 1.1,
+          duration: 15,
+          ease: 'linear',
+          delay: 2
+        });
+      } else {
+        // Hide other slides
+        gsap.to(bg, {
+          opacity: 0,
+          duration: 2,
+          ease: 'power2.in',
+          onComplete: () => {
+            bg.classList.remove('active');
+          }
+        });
+      }
+    });
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
+  }
+
+  // Start slideshow
+  setInterval(nextSlide, slideInterval);
+
+  // Initial animation untuk slide pertama
+  gsap.fromTo(backgrounds[0], 
+    {
+      opacity: 0,
+      scale: 1.2
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 2,
+      ease: 'power2.out',
+      delay: 0.5
+    }
+  );
 }
 
 function initScrollAnimations() {
@@ -507,3 +621,86 @@ window.addEventListener('scroll', () => {
   });
 });
 // ===== AKHIR TAMBAHAN Stats Animation =====
+
+// ===== SMOOTH SCROLL UNTUK CTA BUTTONS =====
+document.addEventListener('DOMContentLoaded', function() {
+  // Smooth scroll untuk semua CTA buttons
+  const ctaButtons = document.querySelectorAll('.btn-cta-primary, .btn-cta-secondary, .nav-link[href="#laporan"]');
+  
+  ctaButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        
+        if (target) {
+          // Animasi smooth scroll dengan GSAP
+          gsap.to(window, {
+            duration: 1.2,
+            scrollTo: {
+              y: target,
+              offsetY: 80
+            },
+            ease: 'power3.inOut'
+          });
+
+          // Animasi pulse pada target section
+          gsap.fromTo(target, 
+            {
+              scale: 1
+            },
+            {
+              scale: 1.02,
+              duration: 0.3,
+              yoyo: true,
+              repeat: 1,
+              ease: 'power2.inOut'
+            }
+          );
+        }
+      }
+    });
+  });
+
+  // Hover effect untuk CTA buttons
+  const primaryBtn = document.querySelector('.btn-cta-primary');
+  const secondaryBtn = document.querySelector('.btn-cta-secondary');
+
+  if (primaryBtn) {
+    primaryBtn.addEventListener('mouseenter', function() {
+      gsap.to(this, {
+        scale: 1.05,
+        duration: 0.3,
+        ease: 'back.out(1.7)'
+      });
+    });
+
+    primaryBtn.addEventListener('mouseleave', function() {
+      gsap.to(this, {
+        scale: 1,
+        duration: 0.3,
+        ease: 'back.out(1.7)'
+      });
+    });
+  }
+
+  if (secondaryBtn) {
+    secondaryBtn.addEventListener('mouseenter', function() {
+      gsap.to(this, {
+        scale: 1.05,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+
+    secondaryBtn.addEventListener('mouseleave', function() {
+      gsap.to(this, {
+        scale: 1,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+  }
+});
