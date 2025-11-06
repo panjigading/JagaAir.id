@@ -26,7 +26,7 @@
 <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
         <!-- Sidebar -->
-        <aside id="sidebar" class="hidden md:block w-64 bg-white">
+        <aside id="sidebar" class="hidden md:block w-64 bg-white border-r">
             <div class="h-full p-4 flex flex-col">
                 <div class="text-center">
                     <a href="/" class="mb-6 text-2xl font-semibold">
