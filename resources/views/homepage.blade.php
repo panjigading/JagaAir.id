@@ -2,7 +2,8 @@
 <div class="homepage-wrapper">
 
   <div class="hero-section">
-    <div class="hero-background"></div>
+    <div class="hero-background" 
+    style="background-image: url('{{ asset('images/footer-bg.jpg') }}');"></div>
 
     <nav class="navbar">
       <div class="navbar-container">
@@ -250,7 +251,10 @@
     </div>
   </section>
 
-  <footer class="footer-section" id="hubungi">
+  <footer class="footer-section" 
+  id="hubungi"  
+  style="background-image: url('{{ asset('images/footer-bg.jpg') }}');">
+    
     <div class="footer-content">
       <div class="footer-column">
         <h4 class="footer-title">JagaAir.ID</h4>
