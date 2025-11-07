@@ -24,9 +24,9 @@
     <div class="min-h-screen flex">
         <aside id="sidebar" class="hidden md:block w-64 bg-white border-r">
             <div class="h-full p-4 flex flex-col">
-                <div class="text-center">
-                    <a href="/" class="mb-6 text-2xl font-bold">
-                        Jaga<span class="text-blue-700">Air.id</span>
+                <div class="flex items-center justify-center my-4">
+                    <a href="/" class="">
+                        <img src="{{ asset('images/logo-jagaair-dark.png') }}" alt="JagaAir.id" class="w-32">
                     </a>
                 </div>
                 <nav class="flex-1 mt-4">
@@ -49,8 +49,8 @@
             <div class="bg-white h-full p-4 border-r">
                 <div class="flex items-center justify-between mb-6">
                     <br/>
-                    <a href="/" class="text-lg font-bold">
-                        Jaga<span class="text-blue-700">Air.id</span>
+                    <a href="/" class="">
+                        <img src="{{ asset('images/logo-jagaair-dark.png') }}" alt="JagaAir.id" class="w-32">
                     </a>
                     <button id="closeMobileNav" class="text-slate-600">✕</button>
                 </div>
