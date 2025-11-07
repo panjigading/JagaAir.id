@@ -293,7 +293,10 @@
     </div>
   </section>
 
-  <footer class="footer-section" id="hubungi">
+  <footer class="footer-section" 
+  id="hubungi"  
+  style="background-image: url('../images/hero-bg-1.jpg');">
+    
     <div class="footer-content">
       <div class="footer-column">
         <h4 class="footer-title">JagaAir.ID</h4>

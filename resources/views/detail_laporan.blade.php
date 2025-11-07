@@ -26,22 +26,22 @@
 <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
         <!-- Sidebar -->
-        <aside id="sidebar" class="hidden md:block w-64 bg-white">
+        <aside id="sidebar" class="hidden md:block w-64 bg-white border-r">
             <div class="h-full p-4 flex flex-col">
                 <div class="text-center">
-                    <a href="/" class="mb-6 text-2xl font-semibold">
+                    <a href="/" class="mb-6 text-2xl font-bold">
                         Jaga<span class="text-blue-700">Air.id</span>
                     </a>
                 </div>
                 <nav class="flex-1 mt-4">
                     <ul class="space-y-1">
-                        <li><a href="/dashboard" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><span class="inline-block w-3.5 h-3.5 bg-slate-300 rounded-full mr-3"></span>Dashboard</a></li>
-                        <li><a href="/reports" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><span class="inline-block w-3.5 h-3.5 bg-slate-300 rounded-full mr-3"></span>Daftar Laporan</a></li>
-                        <li><a href="/kotak-saran" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><span class="inline-block w-3.5 h-3.5 bg-slate-300 rounded-full mr-3"></span>Kotak Saran</a></li>
+                        <li><a href="/dashboard" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><svg class="w-6 h-6 mr-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-6 5h6m-6 4h6M10 3v4h4V3h-4Z"/></svg>Dashboard</a></li>
+                        <li><a href="/reports" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><svg class="w-6 h-6 mr-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023"/></svg>Daftar Laporan</a></li>
+                        <li><a href="/kotak-saran" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><svg class="w-6 h-6 mr-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 3v4a1 1 0 0 1-1 1H5m4 8h6m-6-4h6m4-8v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Z"/></svg>Kotak Saran</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}" class="m-0">
                                 @csrf
-                                <button type="submit" class="w-full text-left px-3 py-2 rounded text-red-600 hover:bg-red-50 flex items-center"><span class="inline-block w-3.5 h-3.5 bg-slate-300 rounded-full mr-3"></span>Log Out</button>
+                                <button type="submit" class="w-full text-left px-3 py-2 rounded text-red-600 hover:bg-red-50 flex items-center"><svg class="w-6 h-6 mr-4 text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/></svg>Log Out</button>
                             </form>
                         </li>
                     </ul>
@@ -53,18 +53,21 @@
         <div id="mobileSidebar" class="fixed inset-y-0 left-0 z-40 w-64 transform -translate-x-full md:hidden" aria-hidden="true">
             <div class="bg-white h-full p-4 border-r">
                 <div class="flex items-center justify-between mb-6">
-                    <a href="/" class="text-lg font-semibold text-sky-600">{{ config('app.name', 'JagaAir.id') }}</a>
+                    <br/>
+                    <a href="/" class="text-lg font-bold">
+                        Jaga<span class="text-blue-700">Air.id</span>
+                    </a>
                     <button id="closeMobileNav" class="text-slate-600">✕</button>
                 </div>
                 <nav>
                     <ul class="space-y-1">
-                        <li><a href="/dashboard" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><span class="inline-block w-3.5 h-3.5 bg-slate-300 rounded-full mr-3"></span>Dashboard</a></li>
-                        <li><a href="/reports" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><span class="inline-block w-3.5 h-3.5 bg-slate-300 rounded-full mr-3"></span>Daftar Laporan</a></li>
-                        <li><a href="/kotak-saran" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><span class="inline-block w-3.5 h-3.5 bg-slate-300 rounded-full mr-3"></span>Kotak Saran</a></li>
+                        <li><a href="/dashboard" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><svg class="w-6 h-6 mr-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-6 5h6m-6 4h6M10 3v4h4V3h-4Z"/></svg>Dashboard</a></li>
+                        <li><a href="/reports" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><svg class="w-6 h-6 mr-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023"/></svg>Daftar Laporan</a></li>
+                        <li><a href="/kotak-saran" class="flex items-center px-3 py-2 rounded hover:bg-slate-100"><svg class="w-6 h-6 mr-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 3v4a1 1 0 0 1-1 1H5m4 8h6m-6-4h6m4-8v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Z"/></svg>Kotak Saran</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}" class="m-0">
                                 @csrf
-                                <button type="submit" class="w-full text-left px-3 py-2 rounded text-red-600 hover:bg-red-50 flex items-center"><span class="inline-block w-3.5 h-3.5 bg-slate-300 rounded-full mr-3"></span>Keluar</button>
+                                <button type="submit" class="w-full text-left px-3 py-2 rounded text-red-600 hover:bg-red-50 flex items-center"><svg class="w-6 h-6 mr-4 text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/></svg>Keluar</button>
                             </form>
                         </li>
                     </ul>
@@ -79,7 +82,11 @@
                     <div class="flex items-center gap-3">
                         <button id="openMobileNav" class="md:hidden text-slate-600">☰</button>
                         <!-- Breadcrumb toggle to hide/show sidebar on desktop -->
-                        <button id="breadcrumbToggle" class="hidden md:inline-flex items-center text-sm text-slate-500 hover:text-slate-700 px-2 py-1 rounded">▸</button>
+                        <button id="breadcrumbToggle" class="hidden md:inline-flex items-center text-sm text-slate-500 hover:text-slate-700 px-2 py-1 rounded">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
+                            </svg>
+                        </button>
                         <h1 class="text-lg font-semibold">Dashboard</h1>
                     </div>
                     <div class="flex items-center gap-3">
@@ -98,7 +105,7 @@
             <main class="p-8 max-w-7xl mx-auto">
                 <section>
                     <div class="bg-white rounded-2xl shadow-xl p-6">
-                        <h3 class="text-lg font-medium mb-4">Detail Laporan</h3>
+                        <h3 class="text-2xl font-bold mb-4">Detail Laporan</h3>
 
                         @php
                             // sample fallback data
@@ -272,19 +279,14 @@
         if (openBtn) openBtn.addEventListener('click', (e) => { e.preventDefault(); showMobile(); });
         if (closeBtn) closeBtn.addEventListener('click', (e) => { e.preventDefault(); hideMobile(); });
 
-        // start hidden
         hideMobile();
 
-        // Breadcrumb toggle (hide/show desktop sidebar)
         const breadcrumbToggle = document.getElementById('breadcrumbToggle');
         const desktopSidebar = document.getElementById('sidebar');
         if (breadcrumbToggle && desktopSidebar) {
             breadcrumbToggle.addEventListener('click', (e) => {
                 e.preventDefault();
-                // Toggle a dedicated class that hides the sidebar on desktop via CSS
                 desktopSidebar.classList.toggle('sidebar-collapsed');
-                // optional: rotate the breadcrumb arrow for feedback (Tailwind rotate class)
-                breadcrumbToggle.classList.toggle('rotate-90');
             });
         }
     </script>
