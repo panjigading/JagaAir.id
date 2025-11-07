@@ -95,8 +95,8 @@
 
             <main class="p-8 max-w-7xl mx-auto">
                 <section>
+                    <h3 class="text-2xl font-bold mb-6">Detail Laporan</h3>
                     <div class="bg-white rounded-2xl shadow-xl p-6">
-                        <h3 class="text-2xl font-bold mb-4">Detail Laporan</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <div>
