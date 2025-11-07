@@ -24,9 +24,9 @@
     <div class="min-h-screen flex">
         <aside id="sidebar" class="hidden md:block w-64 bg-white border-r">
             <div class="h-full p-4 flex flex-col">
-                <div class="text-center">
-                    <a href="/" class="mb-6 text-2xl font-bold">
-                        Jaga<span class="text-blue-700">Air.id</span>
+                <div class="flex items-center justify-center my-4">
+                    <a href="/" class="">
+                        <img src="{{ asset('images/logo-jagaair-dark.png') }}" alt="JagaAir.id" class="w-32">
                     </a>
                 </div>
                 <nav class="flex-1 mt-4">
@@ -49,8 +49,8 @@
             <div class="bg-white h-full p-4 border-r">
                 <div class="flex items-center justify-between mb-6">
                     <br/>
-                    <a href="/" class="text-lg font-bold">
-                        Jaga<span class="text-blue-700">Air.id</span>
+                    <a href="/" class="">
+                        <img src="{{ asset('images/logo-jagaair-dark.png') }}" alt="JagaAir.id" class="w-32">
                     </a>
                     <button id="closeMobileNav" class="text-slate-600">✕</button>
                 </div>
@@ -95,84 +95,45 @@
 
             <main class="p-8 max-w-7xl mx-auto">
                 <section>
+                    <h3 class="text-2xl font-bold mb-6">Detail Laporan</h3>
                     <div class="bg-white rounded-2xl shadow-xl p-6">
-                        <h3 class="text-2xl font-bold mb-4">Detail Laporan</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <div>
                                     <div class="text-sm text-slate-500">Status</div>
-                                    <div class="inline-block mt-1 px-3 py-1 rounded-full text-sm font-medium text-white bg-amber-500">Diproses</div>
+                                    <div class="inline-block mt-1 px-3 py-1 rounded-full text-sm font-medium text-white bg-emerald-500">Selesai</div>
                                 </div>
 
                                 <div class="mt-3 text-sm text-slate-500">Nama Pelapor</div>
-                                <div class="font-medium">Budi Santoso</div>
+                                <div class="font-medium">(Anonim)</div>
 
                                 <div class="mt-3 text-sm text-slate-500">Kecamatan</div>
-                                <div class="font-medium">Klojen</div>
+                                <div class="font-medium">Lowokwaru</div>
 
                                 <div class="mt-3 text-sm text-slate-500">Kelurahan</div>
-                                <div class="font-medium">Kauman</div>
+                                <div class="font-medium">Jatimulyo</div>
 
                                 <div class="mt-3 text-sm text-slate-500">Tanggal Pelaporan</div>
-                                <div class="font-medium">2 November 2025</div>
+                                <div class="font-medium">20 Maret 2025</div>
 
                                 <div class="mt-3 text-sm text-slate-500">Kategori</div>
-                                <div class="font-medium">Penyumbatan Saluran</div>
+                                <div class="font-medium">Infrastruktur Air</div>
 
                                 <div class="mt-4">
                                     <div class="text-sm text-slate-500">Deskripsi</div>
-                                    <div class="mt-1 text-sm text-slate-700">Saluran tersumbat di depan rumah, membutuhkan pembersihan segera.</div>
+                                    <div class="mt-1 text-sm text-slate-700">
+                                        Di sekitar kawasan jembatan Suhat, Kecamatan Lowokwaru, Kota Malang, kondisi sanitasi terlihat memprihatinkan. Saluran air di area tersebut mengalami penyumbatan akibat penumpukan sampah rumah tangga dan lumpur, sehingga menimbulkan genangan air yang berbau tidak sedap.
+                                        Situasi ini berpotensi menimbulkan gangguan kesehatan bagi warga sekitar serta menghambat aliran air ke saluran utama. Diharapkan pihak terkait dapat segera melakukan pembersihan dan perbaikan sistem drainase agar aliran air kembali lancar dan lingkungan tetap bersih.
+                                    </div>
                                 </div>
                             </div>
 
                             <div>
                                 <div class="text-sm text-slate-500">Bukti</div>
                                 <div class="mt-2">
-                                    @php
-                                        // Normalize bukti data into an array of URLs/paths
-                                        $buktiList = [];
-                                        if(!empty($r->bukti)){
-                                            if(is_array($r->bukti)){
-                                                $buktiList = $r->bukti;
-                                            } elseif(is_string($r->bukti)){
-                                                // try JSON decode first
-                                                $decoded = json_decode($r->bukti, true);
-                                                if(json_last_error() === JSON_ERROR_NONE && is_array($decoded)){
-                                                    $buktiList = $decoded;
-                                                } else {
-                                                    // maybe pipe-separated or comma
-                                                    if(strpos($r->bukti, '|') !== false){
-                                                        $buktiList = explode('|', $r->bukti);
-                                                    } elseif(strpos($r->bukti, ',') !== false){
-                                                        $buktiList = explode(',', $r->bukti);
-                                                    } else {
-                                                        $buktiList = [$r->bukti];
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    @endphp
-
-                                    @if(count($buktiList))
-                                        <div class="space-y-2">
-                                            @foreach($buktiList as $bukti)
-                                                @php $b = trim($bukti); @endphp
-                                                @if(preg_match('/\.(jpg|jpeg|png|gif|webp)$/i', $b))
-                                                    <img src="{{ asset($b) }}" alt="Bukti" class="w-full h-36 md:h-44 object-cover rounded" />
-                                                @else
-                                                    <a href="{{ asset($b) }}" target="_blank" class="block text-sm text-sky-600 underline">{{ basename($b) }}</a>
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                    @else
-                                        <div class="flex items-center justify-center text-slate-500 border rounded p-4" style="min-height:66vh;">
-                                            <div class="text-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3v4M8 3v4M3 11h18"/></svg>
-                                                <div class="mt-3 font-medium">Tidak ada bukti terlampir</div>
-                                                <div class="mt-1 text-sm text-slate-500">Tambahkan foto atau file untuk bukti.</div>
-                                            </div>
-                                        </div>
-                                    @endif
+                                    <div class="mt-2 h-80">
+                                        <img src="{{ asset('images/bukti-laporan.png') }}" class="h-full w-full object-cover rounded" alt="Bukti">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -187,9 +148,9 @@
                                     <label class="block text-sm text-slate-600">Ubah Status</label>
                                     <div class="relative mt-1">
                                         <select name="status" class="appearance-none bg-white block w-full rounded border border-gray-200 px-3 py-2 pr-10 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-200">
-                                        <option value="Diproses" selected>Diproses</option>
+                                        <option value="Diproses">Diproses</option>
                                         <option value="Ditangani">Ditangani</option>
-                                        <option value="Selesai">Selesai</option>
+                                        <option selected value="Selesai">Selesai</option>
                                         <option value="Dikembalikan">Dikembalikan</option>
                                         </select>
                                         <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center">
