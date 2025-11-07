@@ -101,27 +101,30 @@
                             <div>
                                 <div>
                                     <div class="text-sm text-slate-500">Status</div>
-                                    <div class="inline-block mt-1 px-3 py-1 rounded-full text-sm font-medium text-white bg-amber-500">Diproses</div>
+                                    <div class="inline-block mt-1 px-3 py-1 rounded-full text-sm font-medium text-white bg-emerald-500">Selesai</div>
                                 </div>
 
                                 <div class="mt-3 text-sm text-slate-500">Nama Pelapor</div>
-                                <div class="font-medium">Budi Santoso</div>
+                                <div class="font-medium">(Anonim)</div>
 
                                 <div class="mt-3 text-sm text-slate-500">Kecamatan</div>
-                                <div class="font-medium">Klojen</div>
+                                <div class="font-medium">Lowokwaru</div>
 
                                 <div class="mt-3 text-sm text-slate-500">Kelurahan</div>
-                                <div class="font-medium">Kauman</div>
+                                <div class="font-medium">Jatimulyo</div>
 
                                 <div class="mt-3 text-sm text-slate-500">Tanggal Pelaporan</div>
-                                <div class="font-medium">2 November 2025</div>
+                                <div class="font-medium">20 Maret 2025</div>
 
                                 <div class="mt-3 text-sm text-slate-500">Kategori</div>
-                                <div class="font-medium">Penyumbatan Saluran</div>
+                                <div class="font-medium">Infrastruktur Air</div>
 
                                 <div class="mt-4">
                                     <div class="text-sm text-slate-500">Deskripsi</div>
-                                    <div class="mt-1 text-sm text-slate-700">Saluran tersumbat di depan rumah, membutuhkan pembersihan segera.</div>
+                                    <div class="mt-1 text-sm text-slate-700">
+                                        Di sekitar kawasan jembatan Suhat, Kecamatan Lowokwaru, Kota Malang, kondisi sanitasi terlihat memprihatinkan. Saluran air di area tersebut mengalami penyumbatan akibat penumpukan sampah rumah tangga dan lumpur, sehingga menimbulkan genangan air yang berbau tidak sedap.
+                                        Situasi ini berpotensi menimbulkan gangguan kesehatan bagi warga sekitar serta menghambat aliran air ke saluran utama. Diharapkan pihak terkait dapat segera melakukan pembersihan dan perbaikan sistem drainase agar aliran air kembali lancar dan lingkungan tetap bersih.
+                                    </div>
                                 </div>
                             </div>
 
@@ -145,9 +148,9 @@
                                     <label class="block text-sm text-slate-600">Ubah Status</label>
                                     <div class="relative mt-1">
                                         <select name="status" class="appearance-none bg-white block w-full rounded border border-gray-200 px-3 py-2 pr-10 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-200">
-                                        <option value="Diproses" selected>Diproses</option>
+                                        <option value="Diproses">Diproses</option>
                                         <option value="Ditangani">Ditangani</option>
-                                        <option value="Selesai">Selesai</option>
+                                        <option selected value="Selesai">Selesai</option>
                                         <option value="Dikembalikan">Dikembalikan</option>
                                         </select>
                                         <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center">
