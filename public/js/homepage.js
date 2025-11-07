@@ -265,28 +265,87 @@ function initScrollAnimations() {
     });
   });
 
-  // Animasi existing tetap ada (keunggulan-card, laporan-form, dll)
-  gsap.utils.toArray('.keunggulan-card').forEach((card, index) => {
+  gsap.utils.toArray('.keunggulan-card-new').forEach((card, index) => {
+    const cardIcon = card.querySelector('.card-icon-new');
+    const cardTitle = card.querySelector('.card-title-new');
+    const cardDescription = card.querySelector('.card-description-new');
+
+    // Scroll trigger animation
     const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 75%',
-        toggleActions: 'play none none reverse',
-        once: false
-      }
+        scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+            once: false
+        }
     });
 
+    // Stagger animation untuk setiap elemen
     tl.to(card, {
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-      ease: 'back.out(1.5)'
-    }, 0)
-      .to(card, {
-        x: -5,
-        duration: 0.3,
-        ease: 'sine.inOut'
-      }, 0);
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        ease: 'back.out(1.7)'
+    })
+    .from(cardIcon, {
+        scale: 0,
+        rotation: -180,
+        duration: 0.6,
+        ease: 'back.out(1.7)'
+    }, '-=0.4')
+    .from(cardTitle, {
+        opacity: 0,
+        y: 20,
+        duration: 0.4,
+        ease: 'power2.out'
+    }, '-=0.3')
+    .from(cardDescription, {
+        opacity: 0,
+        y: 20,
+        duration: 0.4,
+        ease: 'power2.out'
+    }, '-=0.2');
+
+    // Hover animations
+    card.addEventListener('mouseenter', () => {
+        gsap.to(cardIcon, {
+            scale: 1.15,
+            rotation: -10,
+            duration: 0.4,
+            ease: 'back.out(2)'
+        });
+        gsap.to(card, {
+            y: -15,
+            scale: 1.02,
+            duration: 0.4,
+            ease: 'power2.out'
+        });
+        // Shine effect
+        const shine = document.createElement('div');
+        shine.className = 'shine';
+        card.appendChild(shine);
+
+        gsap.fromTo(shine, { left: '-100%' },
+            { left: '100%', duration: 0.7, ease: 'power2.out' }
+        );
+        setTimeout(() => shine.remove(), 700);
+    });
+
+    card.addEventListener('mouseleave', () => {
+        gsap.to(cardIcon, {
+            scale: 1,
+            rotation: 0,
+            duration: 0.4,
+            ease: 'back.out(2)'
+        });
+        gsap.to(card, {
+            y: 0,
+            scale: 1,
+            duration: 0.4,
+            ease: 'power2.out'
+        });
+    });
   });
 
   // ... sisanya tetap sama (laporan-form-wrapper, form-group, footer-column)

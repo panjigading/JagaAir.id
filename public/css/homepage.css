@@ -604,52 +604,152 @@ body {
   transform: scale(1.1) rotate(5deg);
 }
 
+/* ===== Keunggulan Section ===== */
 .keunggulan-section {
-  padding: 120px 40px;
-  background-color: white;
+    padding: 120px 40px;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
 }
 
-.keunggulan-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
+.keunggulan-grid-new {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.keunggulan-card {
-  background: linear-gradient(135deg, #f5f9ff 0%, #ffffff 100%);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: 40px 30px;
-  text-align: center;
-  transition: var(--transition);
-  opacity: 0;
-  transform: translateY(40px);
-  cursor: pointer;
+.keunggulan-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
 }
 
-.keunggulan-card:hover {
-  transform: translateY(-15px);
-  border-color: var(--primary-color);
-  box-shadow: 0 10px 30px rgba(118, 214, 255, 0.2);
+.keunggulan-card-new {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    border: 2px solid var(--border-color);
+    border-radius: 24px;
+    padding: 50px 40px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
-.card-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 25px;
-  background-color: rgba(118, 214, 255, 0.1);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition);
+/* Gradient border effect on hover */
+.keunggulan-card-new::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--primary-color), #4a90e2, var(--primary-color));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-.keunggulan-card:hover .card-icon {
-  background-color: rgba(118, 214, 255, 0.2);
-  transform: scale(1.1) rotate(5deg);
+.keunggulan-card-new:hover::before {
+    opacity: 1;
+}
+
+.keunggulan-card-new::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(118, 214, 255, 0.1) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.keunggulan-card-new:hover::after {
+    width: 500px;
+    height: 500px;
+}
+
+.keunggulan-card-new:hover {
+    transform: translateY(-15px) scale(1.02);
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 60px rgba(118, 214, 255, 0.3);
+}
+
+.card-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card-icon-new {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, rgba(118, 214, 255, 0.1), rgba(74, 144, 226, 0.1));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+}
+
+.card-icon-new svg {
+    width: 60px;
+    height: 60px;
+    transition: all 0.4s ease;
+}
+
+.keunggulan-card-new:hover .card-icon-new {
+    background: linear-gradient(135deg, rgba(118, 214, 255, 0.3), rgba(74, 144, 226, 0.3));
+    transform: scale(1.1) rotate(-10deg);
+    box-shadow: 0 10px 30px rgba(118, 214, 255, 0.3);
+}
+
+.keunggulan-card-new:hover .card-icon-new svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(118, 214, 255, 0.5));
+}
+
+.card-title-new {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.keunggulan-card-new:hover .card-title-new {
+    color: var(--primary-color);
+}
+
+.card-description-new {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.7;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.keunggulan-card-new:hover .card-description-new {
+    color: #444;
 }
 
 .card-icon img {
@@ -1042,9 +1142,36 @@ body {
     font-size: 13px;
   }
 
-  .keunggulan-grid {
+  .keunggulan-grid-new {
+    gap: 30px;
+  }
+
+  .keunggulan-row {
     grid-template-columns: 1fr;
     gap: 25px;
+  }
+
+  .keunggulan-card-new {
+    padding: 40px 30px;
+  }
+
+  .card-icon-new {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 25px;
+  }
+
+  .card-icon-new svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .card-title-new {
+    font-size: 20px;
+  }
+
+  .card-description-new {
+    font-size: 14px;
   }
 
   .laporan-form-wrapper {
@@ -1128,8 +1255,35 @@ body {
     margin-bottom: 50px;
   }
 
+  .keunggulan-section {
+    padding: 60px 20px;
+  }
+
+  .keunggulan-card-new {
+    padding: 35px 25px;
+  }
+
+  .card-icon-new {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 20px;
+  }
+
+  .card-icon-new svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .card-title-new {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .card-description-new {
+    font-size: 13px;
+  }
+
   .alur-section,
-  .keunggulan-section,
   .laporan-section {
     padding: 60px 20px;
   }

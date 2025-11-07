@@ -230,29 +230,79 @@
   </section>
 
   <section id="keunggulan" class="keunggulan-section">
-    <h2 class="section-title">Kenapa Memilih JagaAir.id ?</h2>
-    <div class="keunggulan-grid">
-      <div class="keunggulan-card">
-        <div class="card-icon">
-          <img src="{{ asset('images/file-text.svg') }}" alt="Cepat">
+    <h2 class="section-title">Kenapa Memilih JagaAir.id?</h2>
+    <div class="keunggulan-grid-new">
+        <!-- Row 1 -->
+        <div class="keunggulan-row">
+            <!-- Card 1: Pelapor Anonim -->
+            <div class="keunggulan-card-new" data-card="1">
+                <div class="card-content-wrapper">
+                    <div class="card-icon-new">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                            <path d="M19.4 15a1.65 1.65 0 0 0.33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0.33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </div>
+                    <div class="card-text-wrapper">
+                        <h3 class="card-title-new">Pelapor Anonim</h3>
+                        <p class="card-description-new">Laporkan masalah tanpa harus mendaftar. Privasi anda terjaga dengan baik</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Resmi dan Terpercaya -->
+            <div class="keunggulan-card-new" data-card="2">
+                <div class="card-content-wrapper">
+                    <div class="card-icon-new">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <div class="card-text-wrapper">
+                        <h3 class="card-title-new">Resmi dan Terpercaya</h3>
+                        <p class="card-description-new">Platform Resmi Kota Malang yang dapat diandalkan</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h3 class="card-title">Cepat & Responsif</h3>
-        <p class="card-description">Sistem kami dirancang untuk memberikan respons tercepat terhadap laporan Anda</p>
-      </div>
-      <div class="keunggulan-card">
-        <div class="card-icon">
-          <img src="{{ asset('images/verified-account.png') }}" alt="Terpercaya">
+
+        <!-- Row 2 -->
+        <div class="keunggulan-row">
+            <!-- Card 3: Notifikasi Real-Time -->
+            <div class="keunggulan-card-new" data-card="3">
+                <div class="card-content-wrapper">
+                    <div class="card-icon-new">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2.9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <div class="card-text-wrapper">
+                        <h3 class="card-title-new">Notifikasi Real-Time</h3>
+                        <p class="card-description-new">Dapatkan update status penanganan laporan anda secara langsung</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Transparansi Penuh -->
+            <div class="keunggulan-card-new" data-card="4">
+                <div class="card-content-wrapper">
+                    <div class="card-icon-new">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <div class="card-text-wrapper">
+                        <h3 class="card-title-new">Transparansi Penuh</h3>
+                        <p class="card-description-new">Lihat Timeline lengkap penanganan dari awal hingga selesai</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h3 class="card-title">Terpercaya</h3>
-        <p class="card-description">Dipercaya oleh ribuan pengguna di Kota Malang untuk melaporkan masalah</p>
-      </div>
-      <div class="keunggulan-card">
-        <div class="card-icon">
-          <img src="{{ asset('images/people.png') }}" alt="Komunitas">
-        </div>
-        <h3 class="card-title">Komunitas Aktif</h3>
-        <p class="card-description">Bergabunglah dengan komunitas untuk membantu menjaga kualitas air bersih</p>
-      </div>
     </div>
   </section>
 
@@ -265,16 +315,16 @@
             <label for="jenis-masalah" class="form-label">Jenis Masalah</label>
             <select id="jenis-masalah" class="form-select">
               <option value="">Pilih jenis masalah</option>
-              <option value="air-keruh">Air Keruh</option>
-              <option value="air-berbau">Air Berbau</option>
-              <option value="tidak-ada-air">Tidak Ada Air</option>
-              <option value="air-tercemar">Air Tercemar</option>
+              <option value="air-keruh">Infrastruktur Air</option>
+              <option value="air-berbau">Sanitasi</option>
+              <option value="tidak-ada-air">Pencemaran Air</option>
+              <option value="air-tercemar">Bencana Terkait Air</option>
             </select>
           </div>
 
           <div class="form-group">
             <label for="lokasi" class="form-label">Lokasi Masalah</label>
-            <input type="text" id="lokasi" class="form-input" placeholder="Masukkan lokasi masalah">
+            <input type="text" id="lokasi" class="form-input" placeholder="Masukkan Link Google Maps atau Alamat Lengkap">
           </div>
 
           <div class="form-group">
@@ -295,7 +345,7 @@
 
   <footer class="footer-section" 
   id="hubungi"  
-  style="background-image: url('../images/hero-bg-1.jpg');">
+  style="background-size: cover; background-image: url('../images/hero-bg-1.jpg');">
     
     <div class="footer-content">
       <div class="footer-column">
@@ -334,8 +384,7 @@
   <p class="footer-copyright">&copy; 2024 JagaAir.ID. All rights reserved.</p>
 </div>
 </footer>
-</div> {{-- Ini penutup .homepage-wrapper --}}
-
+</div> 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
