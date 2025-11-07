@@ -153,7 +153,7 @@
                                         }
                                     @endphp
 
-                                    @if(count($buktiList))
+                                    <!-- @if(count($buktiList))
                                         <div class="space-y-2">
                                             @foreach($buktiList as $bukti)
                                                 @php $b = trim($bukti); @endphp
@@ -172,7 +172,10 @@
                                                 <div class="mt-1 text-sm text-slate-500">Tambahkan foto atau file untuk bukti.</div>
                                             </div>
                                         </div>
-                                    @endif
+                                    @endif -->
+                                    <div class="mt-2 h-80">
+                                        <img src="{{ asset('images/bukti-laporan.png') }}" class="h-full w-full object-cover rounded" alt="Bukti">
+                                    </div>
                                 </div>
                             </div>
                         </div>
