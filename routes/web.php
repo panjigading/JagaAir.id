@@ -49,6 +49,11 @@ Route::get('/kotak_saran/{id}', function ($id) {
     return view('detail_saran', ['suggestion' => $suggestion]);
 })->where('id', '[0-9]+')->name('detail.saran'); // <-- Penting: Beri nama route
 
+// 🔧 Route BARU untuk halaman Form Saran
+Route::get('/saran', function () {
+    return view('form_saran');
+});
+
 Route::get('/sign_up', function () {
     return view('sign_up');
 });
