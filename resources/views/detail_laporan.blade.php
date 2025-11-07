@@ -128,51 +128,6 @@
                             <div>
                                 <div class="text-sm text-slate-500">Bukti</div>
                                 <div class="mt-2">
-                                    @php
-                                        // Normalize bukti data into an array of URLs/paths
-                                        $buktiList = [];
-                                        if(!empty($r->bukti)){
-                                            if(is_array($r->bukti)){
-                                                $buktiList = $r->bukti;
-                                            } elseif(is_string($r->bukti)){
-                                                // try JSON decode first
-                                                $decoded = json_decode($r->bukti, true);
-                                                if(json_last_error() === JSON_ERROR_NONE && is_array($decoded)){
-                                                    $buktiList = $decoded;
-                                                } else {
-                                                    // maybe pipe-separated or comma
-                                                    if(strpos($r->bukti, '|') !== false){
-                                                        $buktiList = explode('|', $r->bukti);
-                                                    } elseif(strpos($r->bukti, ',') !== false){
-                                                        $buktiList = explode(',', $r->bukti);
-                                                    } else {
-                                                        $buktiList = [$r->bukti];
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    @endphp
-
-                                    <!-- @if(count($buktiList))
-                                        <div class="space-y-2">
-                                            @foreach($buktiList as $bukti)
-                                                @php $b = trim($bukti); @endphp
-                                                @if(preg_match('/\.(jpg|jpeg|png|gif|webp)$/i', $b))
-                                                    <img src="{{ asset($b) }}" alt="Bukti" class="w-full h-36 md:h-44 object-cover rounded" />
-                                                @else
-                                                    <a href="{{ asset($b) }}" target="_blank" class="block text-sm text-sky-600 underline">{{ basename($b) }}</a>
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                    @else
-                                        <div class="flex items-center justify-center text-slate-500 border rounded p-4" style="min-height:66vh;">
-                                            <div class="text-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3v4M8 3v4M3 11h18"/></svg>
-                                                <div class="mt-3 font-medium">Tidak ada bukti terlampir</div>
-                                                <div class="mt-1 text-sm text-slate-500">Tambahkan foto atau file untuk bukti.</div>
-                                            </div>
-                                        </div>
-                                    @endif -->
                                     <div class="mt-2 h-80">
                                         <img src="{{ asset('images/bukti-laporan.png') }}" class="h-full w-full object-cover rounded" alt="Bukti">
                                     </div>
