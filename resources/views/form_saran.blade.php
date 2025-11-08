@@ -1,23 +1,4 @@
-@extends('layouts.public')
-
-@section('content')
-<!-- Header Section -->
-<header class="bg-white shadow-sm py-4">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold text-blue-600">JagaAir.id</h1>
-        <nav class="flex space-x-6">
-            <a href="/" class="hover:text-blue-600">Beranda</a>
-            <a href="/dashboard" class="hover:text-blue-600">Buat Laporan</a>
-            <a href="/kotak_saran" class="hover:text-blue-600">Cari Laporan</a>
-            <a href="/saran" class="font-semibold text-blue-600 hover:text-blue-800">Saran</a> <!-- Aktif -->
-        </nav>
-        <div class="flex items-center space-x-4">
-            <a href="/sign_up" class="bg-blue-500 text-white px-4 py-2 rounded font-medium hover:bg-blue-600">Sign Up</a>
-            <a href="/sign_in" class="bg-gray-200 text-gray-800 px-4 py-2 rounded font-medium hover:bg-gray-300">Login</a>
-        </div>
-    </div>
-</header>
-
+<x-app>
 <!-- Main Content Section with Background Image -->
 <div class="relative min-h-screen bg-gradient-to-br from-blue-500 to-blue-600 overflow-hidden">
     <!-- Background Abstract Shapes -->
@@ -73,44 +54,5 @@
         </div>
     </div>
 </div>
-
-<!-- Footer Section -->
-<footer class="bg-cover bg-center bg-no-repeat py-12" style="background-image: url('https://cdn.discordapp.com/attachments/1300000000000000000/1300000000000000000/water-globe.jpg')">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Left Column -->
-            <div>
-                <h3 class="text-xl font-bold text-white mb-4">JagaAir.id</h3>
-                <p class="text-gray-300 mb-4">
-                    Platform pelaporan masalah air bersih dan sanitasi untuk Kota Malang. Bersama kita wujudkan lingkungan yang bersih dan bebas dari banjir.
-                </p>
-                <p class="text-gray-400 text-sm">© 2025 All Rights Reserved</p>
-            </div>
-
-            <!-- Middle Column -->
-            <div class="text-center">
-                <h4 class="text-white font-semibold mb-4">Follow us</h4>
-                <div class="flex justify-center space-x-4">
-                    <a href="#" class="text-white hover:text-blue-300"><i class="bi bi-whatsapp text-xl"></i></a>
-                    <a href="#" class="text-white hover:text-blue-300"><i class="bi bi-twitter-x text-xl"></i></a>
-                    <a href="#" class="text-white hover:text-blue-300"><i class="bi bi-instagram text-xl"></i></a>
-                    <a href="#" class="text-white hover:text-blue-300"><i class="bi bi-facebook text-xl"></i></a>
-                </div>
-                <h4 class="text-white font-semibold mt-6 mb-2">Call us</h4>
-                <p class="text-gray-300">+1 800 854-36-80</p>
-            </div>
-
-            <!-- Right Column -->
-            <div>
-                <h4 class="text-white font-semibold mb-4">Sitemap</h4>
-                <ul class="space-y-2">
-                    <li><a href="/" class="text-gray-300 hover:text-white">Beranda</a></li>
-                    <li><a href="/dashboard" class="text-gray-300 hover:text-white">Buat Laporan</a></li>
-                    <li><a href="/kotak_saran" class="text-gray-300 hover:text-white">Cari Laporan</a></li>
-                    <li><a href="/saran" class="text-gray-300 hover:text-white">Saran</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-@endsection
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</x-app>
