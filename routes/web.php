@@ -59,6 +59,13 @@ Route::get('/sign_in', function () {
     return view('sign_in');
 });
 
+Route::get('/cari_laporan', function () {
+    return view('cari_laporan');
+});
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 Route::post('/logout', function (Request $request) {
     if (function_exists('auth') && auth()->check()) {
         Auth::logout();
