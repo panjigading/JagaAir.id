@@ -16,18 +16,15 @@ Route::get('/dashboard/detail_laporan', function () {
     return view('detail_laporan');
 });
 
-Route::get('/admin/daftar-laporan', function () {
-    return view('admin.daftar-laporan');
+Route::get('/admin/daftar_laporan', function () {
+    return view('admin.daftar_laporan');
 });
 
-// 🔧 Route untuk daftar saran (ubah nama view jika perlu)
 Route::get('/kotak_saran', function () {
     return view('kotak_saran');
 });
 
-// 🔧 Route BARU untuk detail saran, dengan NAMA
 Route::get('/kotak_saran/{id}', function ($id) {
-    // Data dummy berdasarkan ID
     $suggestions = [
         '00001' => ['id' => '00001', 'name' => 'ANONIM', 'date' => '20 MAR 2025', 'category' => 'Infrastruktur Air', 'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo sapien, ultricies id quam sit amet, feugiat laoreet magna.'],
         '00002' => ['id' => '00002', 'name' => 'ANONIM', 'date' => '28 May 2025', 'category' => 'Infrastruktur Air', 'content' => 'Contoh saran lainnya...'],
@@ -47,7 +44,12 @@ Route::get('/kotak_saran/{id}', function ($id) {
     }
 
     return view('detail_saran', ['suggestion' => $suggestion]);
-})->where('id', '[0-9]+')->name('detail.saran'); // <-- Penting: Beri nama route
+})->where('id', '[0-9]+')->name('detail.saran'); 
+
+
+Route::get('/saran', function () {
+    return view('form_saran');
+});
 
 Route::get('/sign_up', function () {
     return view('sign_up');
@@ -56,6 +58,13 @@ Route::get('/sign_up', function () {
 Route::get('/sign_in', function () {
     return view('sign_in');
 });
+
+Route::get('/cari_laporan', function () {
+    return view('cari_laporan');
+});
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 Route::post('/logout', function (Request $request) {
     if (function_exists('auth') && auth()->check()) {

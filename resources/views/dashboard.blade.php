@@ -1,32 +1,122 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
+
+@section('title', 'Dashboard | JagaAir.id')
 
 @section('content')
-    <h1 class="text-3xl font-bold mb-6 text-primary">Dashboard</h1>
+<!-- Dashboard Content -->
+<h2 class="text-2xl font-bold mb-6">Dashboard</h2>
 
-    <div class="grid grid-cols-4 gap-6 mb-10">
-        @include('components.stat-card', ['title' => 'Total Laporan', 'value' => '990'])
-        @include('components.stat-card', ['title' => 'Menunggu Verifikasi', 'value' => '30'])
-        @include('components.stat-card', ['title' => 'Diproses', 'value' => '15'])
-        @include('components.stat-card', ['title' => 'Selesai', 'value' => '920'])
+<!-- Stat Cards -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+    <div class="bg-white p-4 rounded-lg shadow">
+        <p class="text-gray-500">Total Laporan</p>
+        <p class="text-2xl font-bold text-blue-600">990</p>
     </div>
+    <div class="bg-white p-4 rounded-lg shadow">
+        <p class="text-gray-500">Menunggu Verifikasi</p>
+        <p class="text-2xl font-bold text-blue-600">30</p>
+    </div>
+    <div class="bg-white p-4 rounded-lg shadow">
+        <p class="text-gray-500">Diproses</p>
+        <p class="text-2xl font-bold text-blue-600">15</p>
+    </div>
+    <div class="bg-white p-4 rounded-lg shadow">
+        <p class="text-gray-500">Selesai</p>
+        <p class="text-2xl font-bold text-blue-600">920</p>
+    </div>
+</div>
 
-    @include('components.table-section', [
-        'title' => 'Laporan Terbaru',
-        'headers' => ['ID', 'Name', 'Kecamatan, Kelurahan', 'Date', 'Category', 'Status'],
-        'data' => [
-            ['id' => '00001', 'name' => 'ANONIM', 'alamat' => 'Lowokwaru, Jatimulyo', 'date' => '04 Sep 2025', 'category' => 'Akses Air Bersih', 'status' => 'Selesai'],
-            ['id' => '00002', 'name' => 'ANONIM', 'alamat' => 'Blimbing, Purwantoro', 'date' => '28 May 2025', 'category' => 'Infrastruktur Air', 'status' => 'Terverifikasi'],
-            ['id' => '00003', 'name' => 'Ahmad Fauzi', 'alamat' => 'Lowokwaru, Dinoyo', 'date' => '23 Nov 2025', 'category' => 'Sanitasi', 'status' => 'Ditolak'],
-            ['id' => '00004', 'name' => 'Anonim', 'alamat' => 'Sukun, Karangbesuki', 'date' => '29 Jul 2025', 'category' => 'Bencana Terkait Air', 'status' => 'Diproses'],
-        ]
-    ])
+<!-- Recent Reports -->
+<div class="bg-white p-6 rounded-lg shadow mb-6">
+    <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold">Laporan Terbaru</h3>
+        <a href="#" class="text-blue-600 hover:underline">Lihat Semua</a>
+    </div>
+    <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+            <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kecamatan, Kelurahan</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">00001</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">ANONIM</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">Lowokwaru, Jatimulyo</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">04 Sep 2025</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">Akses Air Bersih</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-lg">Selesai</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">00002</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">ANONIM</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">Blimbing, Purwantoro</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">28 May 2025</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">Infrastruktur Air</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-lg">Terverifikasi</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">00003</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Ahmad Fauzi</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">Lowokwaru, Dinoyo</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">23 Nov 2025</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">Sanitasi</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                    <span class="px-3 py-1 bg-red-100 text-red-600 text-xs font-medium rounded-lg">Ditolak</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">00004</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Anonim</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">Sukun, Karangbesuki</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">29 Jul 2025</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">Bencana Terkait Air</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-medium rounded-lg">Diproses</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-    @include('components.table-section', [
-        'title' => 'Saran Terbaru',
-        'headers' => ['ID', 'Name', 'Date', 'Category', 'Aksi'],
-        'data' => [
-            ['id' => '00001', 'name' => 'ANONIM', 'date' => '20 Mar 2025', 'category' => 'Infrastruktur Air', 'status' => 'Detail'],
-            ['id' => '00002', 'name' => 'Ahmad Fauzi', 'date' => '23 Nov 2025', 'category' => 'Sanitasi', 'status' => 'Detail'],
-        ]
-    ])
+<!-- Recent Suggestions -->
+<div class="bg-white p-6 rounded-lg shadow">
+    <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold">Saran Terbaru</h3>
+        <a href="#" class="text-blue-600 hover:underline">Lihat Semua</a>
+    </div>
+    <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+            <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">00001</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">ANONIM</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">20 Mar 2025</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">Infrastruktur Air</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs">
+                        Detail
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 @endsection
