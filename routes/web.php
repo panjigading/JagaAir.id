@@ -70,3 +70,17 @@ Route::post('/logout', function (Request $request) {
     }
     return redirect('/');
 })->name('logout');
+
+Route::get('/pencarian_laporan/{id}', function ($id) {
+    $suggestions = [
+        '00001' => ['id' => '00001', 'name' => 'ANONIM', 'date' => '20 MAR 2025', 'category' => 'Infrastruktur Air', 'location' => 'Lowokwaru, Jatimulyo'],
+    ];
+
+    $report = $suggestions[$id] ?? null;
+
+    if (!$report) {
+        abort(404);
+    }
+
+    return view('riwayat_update_laporan', compact('report'));
+})->name('pencarian_laporan');

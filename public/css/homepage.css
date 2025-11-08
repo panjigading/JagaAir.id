@@ -132,9 +132,14 @@ body {
   animation: fadeInDown 0.8s ease forwards;
 }
 
-.brand-logo {
-  width: 32px;
-  height: 32px;
+.brand-logo-png {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-name {
+  display: none;
 }
 
 .navbar-menu {
@@ -169,7 +174,35 @@ body {
   width: 100%;
 }
 
-.btn-login {
+.navbar-auth {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  opacity: 0;
+  animation: fadeInDown 0.8s ease 0.2s forwards;
+}
+
+.btn-signin {
+  padding: 10px 24px;
+  background-color: transparent;
+  color: var(--text-light);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+}
+
+.btn-signin:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* Style untuk Sign Up button */
+.btn-signup {
   padding: 10px 24px;
   background-color: var(--primary-color);
   color: var(--text-dark);
@@ -179,13 +212,12 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
-  opacity: 0;
-  animation: fadeInDown 0.8s ease 0.2s forwards;
 }
 
-.btn-login:hover {
+.btn-signup:hover {
   background-color: #5bc9ff;
   transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(118, 214, 255, 0.4);
 }
 
 .hero-content {
@@ -1095,6 +1127,21 @@ body {
     justify-content: center;
   }
 
+  .navbar-auth {
+    order: 2;
+    gap: 8px;
+  }
+
+  .btn-signin,
+  .btn-signup {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .brand-logo-png {
+    height: 32px;
+  }
+
   .hero-title {
     font-size: 48px;
     line-height: 56px;
@@ -1241,6 +1288,20 @@ body {
 }
 
 @media (max-width: 480px) {
+  .navbar-auth {
+    gap: 6px;
+  }
+
+  .btn-signin,
+  .btn-signup {
+    padding: 7px 14px;
+    font-size: 12px;
+  }
+
+  .brand-logo-png {
+    height: 28px;
+  }
+  
   .hero-title {
     font-size: 32px;
     line-height: 40px;
