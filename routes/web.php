@@ -46,7 +46,6 @@ Route::get('/kotak_saran/{id}', function ($id) {
     return view('detail_saran', ['suggestion' => $suggestion]);
 })->where('id', '[0-9]+')->name('detail.saran'); 
 
-
 Route::get('/saran', function () {
     return view('form_saran');
 });
@@ -62,9 +61,6 @@ Route::get('/sign_in', function () {
 Route::get('/cari_laporan', function () {
     return view('cari_laporan');
 });
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 Route::post('/logout', function (Request $request) {
     if (function_exists('auth') && auth()->check()) {
