@@ -27,12 +27,12 @@
   <table class="w-full text-left text-sm">
     <thead class="bg-gray-50">
       <tr class="text-gray-700 border-b">
-        <th class="px-6 py-3">ID</th>
-        <th class="px-6 py-3">NAME</th>
-        <th class="px-6 py-3">KECAMATAN, KELURAHAN</th>
-        <th class="px-6 py-3">DATE</th>
-        <th class="px-6 py-3">CATEGORY</th>
-        <th class="px-6 py-3">STATUS</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NAME</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">KECAMATAN, KELURAHAN</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DATE</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CATEGORY</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">STATUS</th>
       </tr>
     </thead>
     <tbody>
