@@ -8,21 +8,18 @@
 
 <!-- Filter Section -->
 <div class="bg-white p-4 rounded-lg shadow mb-6">
-    <div class="flex items-center space-x-4">
+    <form class="flex items-center space-x-4">
         <span class="text-gray-500"><i class="bi bi-funnel"></i> Filter by</span>
         <div class="relative">
-            <select class="appearance-none bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
-                <option>Date</option>
-                <option>Last Week</option>
-                <option>Last Month</option>
+            <select class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+                <option>Tanggal</option>
+                <option>Minggu lalu</option>
+                <option>Bulan lalu</option>
             </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <i class="bi bi-chevron-down"></i>
-            </div>
         </div>
         <div class="relative">
-            <select class="appearance-none bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
-                <option>Category</option>
+            <select class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+                <option>Kategori</option>
                 <option>Infrastruktur Air</option>
                 <option>Sanitasi</option>
                 <option>Pelayanan & Respons Petugas</option>
@@ -30,14 +27,14 @@
                 <option>Inovasi & Ide Baru</option>
                 <option>Sistem & Aplikasi</option>
             </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <i class="bi bi-chevron-down"></i>
-            </div>
         </div>
-        <button class="text-red-500 flex items-center space-x-1">
-            <i class="bi bi-arrow-counterclockwise"></i> <span>Reset Filter</span>
+        <button type="reset" class="bg-white-200 text-red-700 px-4 py-2 rounded hover:bg-red-200 focus:outline-none">
+            Reset
         </button>
-    </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">
+            Terapkan
+        </button>
+    </form>
 </div>
 
 <!-- Table Section -->
