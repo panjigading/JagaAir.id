@@ -7,35 +7,33 @@
 <h2 class="text-2xl font-bold mb-6">Daftar Saran</h2>
 
 <!-- Filter Section -->
-<div class="bg-white p-4 rounded-lg shadow mb-6">
-    <form class="flex items-center space-x-4">
+<form class="flex items-center justify-between mb-6">
+    <div class="flex gap-4 items-center">
         <span class="text-gray-500"><i class="bi bi-funnel"></i> Filter by</span>
-        <div class="relative">
-            <select class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
-                <option>Tanggal</option>
-                <option>Minggu lalu</option>
-                <option>Bulan lalu</option>
-            </select>
-        </div>
-        <div class="relative">
-            <select class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
-                <option>Kategori</option>
-                <option>Infrastruktur Air</option>
-                <option>Sanitasi</option>
-                <option>Pelayanan & Respons Petugas</option>
-                <option>Edukasi & Sosialisasi</option>
-                <option>Inovasi & Ide Baru</option>
-                <option>Sistem & Aplikasi</option>
-            </select>
-        </div>
-        <button type="reset" class="bg-white-200 text-red-700 px-4 py-2 rounded hover:bg-red-200 focus:outline-none">
+        <select class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+            <option>Tanggal</option>
+            <option>Minggu lalu</option>
+            <option>Bulan lalu</option>
+        </select>
+        <select class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+            <option>Kategori</option>
+            <option>Infrastruktur Air</option>
+            <option>Sanitasi</option>
+            <option>Pelayanan & Respons Petugas</option>
+            <option>Edukasi & Sosialisasi</option>
+            <option>Inovasi & Ide Baru</option>
+            <option>Sistem & Aplikasi</option>
+        </select>
+    </div>
+    <div class="flex gap-4">
+        <button type="reset" class="bg-white text-red-700 px-4 py-2 rounded hover:bg-red-200 focus:outline-none">
             Reset
         </button>
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">
             Terapkan
         </button>
-    </form>
-</div>
+    </div>
+</form>
 
 <!-- Table Section -->
 <div class="bg-white rounded-lg shadow overflow-hidden">
