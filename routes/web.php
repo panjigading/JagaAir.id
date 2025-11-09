@@ -17,7 +17,7 @@ Route::get('/dashboard/detail_laporan', function () {
 })->name('admin.detail_laporan');
 
 Route::get('/dashboard/daftar_laporan', function () {
-    return view('admin.daftar_laporan');
+    return view('daftar_laporan');
 })->name('admin.daftar_laporan');
 
 Route::get('/dashboard/kotak_saran', function () {
