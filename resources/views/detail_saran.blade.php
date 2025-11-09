@@ -41,7 +41,7 @@
         </div>
 
         <div class="mt-6 flex justify-end space-x-3">
-            <a href="/kotak_saran" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+            <a href="{{ route('admin.kotak_saran') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                 Kembali
             </a>
             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
