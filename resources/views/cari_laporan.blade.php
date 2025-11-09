@@ -470,9 +470,8 @@
                 @for ($i = 1; $i <= 6; $i++)
                 <div class="report-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="flex flex-col sm:flex-row">
-                        <img src="https://images.unsplash.com/photo-1504235777517-95f6b4d09e20?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Laporan" class="w-full sm:w-1/3 h-48 sm:h-auto object-cover">
+                        <img src="{{ asset('images/bukti-laporan.png') }}" alt="Laporan" class="w-full sm:w-1/3 h-48 sm:h-auto object-cover">
                         <div class="p-4 flex-1">
-                            <h3 class="font-bold text-gray-800 mb-2">Judul Laporan {{ $i }}</h3>
                             <div class="space-y-1 text-sm text-gray-600 mb-3">
                                 <div class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-xs text-blue-500"></i> Lowokwaru, Jatimulyo</div>
                                 <div class="flex items-center"><i class="far fa-calendar mr-2 text-xs text-blue-500"></i> {{ \Carbon\Carbon::now()->subDays(7 - $i)->format('d F Y') }}</div>
@@ -480,8 +479,8 @@
                                 <div class="flex items-center"><i class="fas fa-tags mr-2 text-xs text-blue-500"></i> Infrastruktur Air</div>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="status-badge status-menunggu">MENUNGGU VERIFIKASI</span>
-                                <button class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded transition">DETAIL</button>
+                                <span class="status-badge status-menunggu">Menunggu Verifikasi</span>
+                                <a class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded transition" href="{{ route('riwayat_update_laporan', ['id' => '00001']) }}">Detail</a>
                             </div>
                         </div>
                     </div>
