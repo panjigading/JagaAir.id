@@ -24,8 +24,12 @@
         </ul>
         <!-- Authentication Buttons -->
         <div class="navbar-auth">
-          <button class="btn-signin">Sign In</button>
-          <button class="btn-signup">Sign Up</button>
+          <a href="{{ route('sign_in') }}">
+            <button class="btn-signin">Sign In</button>
+          </a>
+          <a href="{{ route('sign_up') }}">
+            <button class="btn-signup">Sign Up</button>
+          </a>
         </div>
       </div>
     </nav>
