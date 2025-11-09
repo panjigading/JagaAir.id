@@ -338,6 +338,20 @@
           </div>
 
           <div class="form-group">
+            <label for="lokasi" class="form-label">Kecamatan</label>
+            <select id="kecamatanDropdown" class="form-select">
+                <option value="">Pilih Kecamatan</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="lokasi" class="form-label">Kelurahan</label>
+            <select id="kelurahanDropdown" class="form-select">
+                <option value="">Pilih Kelurahan</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label for="lokasi" class="form-label">Lokasi Masalah</label>
             <input type="text" id="lokasi" class="form-input" placeholder="Masukkan Link Google Maps atau Alamat Lengkap">
           </div>
@@ -411,4 +425,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script src="{{ asset('js/kelurahan_kecamatan.js') }}"></script>
 </x-app>
