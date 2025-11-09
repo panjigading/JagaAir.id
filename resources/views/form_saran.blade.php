@@ -56,9 +56,12 @@
                             <label for="kategori" class="block text-sm font-medium text-gray-700">Kategori</label>
                             <select id="kategori" name="kategori" required class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="">Pilih Kategori</option>
-                                <option value="Pelayanan">Pelayanan</option>
-                                <option value="Website">Sistem/Aplikasi</option>
-                                <option value="Lainnya">Lainnya</option>
+                                <option>Infrastruktur Air</option>
+                                <option>Sanitasi</option>
+                                <option>Pelayanan & Respons Petugas</option>
+                                <option>Edukasi & Sosialisasi</option>
+                                <option>Inovasi & Ide Baru</option>
+                                <option>Sistem & Aplikasi</option>
                             </select>
                         </div>
                         
