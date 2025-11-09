@@ -6,21 +6,44 @@
 <h2 class="text-2xl font-bold mb-6">Daftar Laporan</h2>
 
 <!-- Filter -->
-<div class="flex gap-3 mb-6 items-center">
-  <button class="flex items-center gap-2 border border-gray-300 px-4 py-2 rounded-lg bg-white hover:bg-gray-50">
-    <span>🔍</span> Daerah
-  </button>
-  <button class="flex items-center gap-2 border border-gray-300 px-4 py-2 rounded-lg bg-white hover:bg-gray-50">
-    📅 Date
-  </button>
-  <button class="flex items-center gap-2 border border-gray-300 px-4 py-2 rounded-lg bg-white hover:bg-gray-50">
-    🗂️ Category
-  </button>
-  <button class="flex items-center gap-2 border border-gray-300 px-4 py-2 rounded-lg bg-white hover:bg-gray-50">
-    ⚙️ Status
-  </button>
-  <button class="text-red-500 hover:underline ml-auto">Reset Filter</button>
-</div>
+<form class="flex items-center justify-between gap-4 mb-6">
+  <div class="flex gap-4 items-center">
+    <span class="text-gray-500">Filter:</span>
+    <select class="bg-white border border-gray-300 rounded py-2 px-4 leading-tight focus:outline-none focus:border-blue-500">
+        <option>Tanggal</option>
+        <option>Minggu lalu</option>
+        <option>Bulan lalu</option>
+    </select>
+    <select id="kecamatanDropdown" class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+        <option value="">Kecamatan</option>
+    </select>
+    <select id="kelurahanDropdown" class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+        <option value="">Kelurahan</option>
+    </select>
+    <select id="jenis-masalah" class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+      <option value="">Kategori</option>
+      <option value="infrastruktur-air">Infrastruktur Air</option>
+      <option value="sanitasi">Sanitasi</option>
+      <option value="pencemaran-air">Pencemaran Air</option>
+      <option value="bencana-terkait-air">Bencana Terkait Air</option>
+    </select>
+    <select class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+      <option>Status</option>
+      <option value="Diproses">Diproses</option>
+      <option value="Ditangani">Ditangani</option>
+      <option value="Selesai">Selesai</option>
+      <option value="Dikembalikan">Dikembalikan</option>
+    </select>
+  </div>
+  <div>
+    <button type="reset" class="bg-white text-red-700 px-4 py-2 rounded hover:bg-red-200 focus:outline-none">
+        Reset
+    </button>
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">
+        Terapkan
+    </button>
+  </div>
+</form> 
 
 <!-- Table -->
 <div class="bg-white shadow-md rounded-lg overflow-hidden">
@@ -72,4 +95,5 @@
   </table>
 </div>
 </section>
+<script src="{{ asset('js/kelurahan_kecamatan.js') }}"></script>
 @endsection
