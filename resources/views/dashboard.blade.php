@@ -45,7 +45,7 @@
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">00001</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00001</a></td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">ANONIM</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">Lowokwaru, Jatimulyo</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">04 Sep 2025</td>
@@ -55,7 +55,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">00002</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00002</a></td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">ANONIM</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">Blimbing, Purwantoro</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">28 May 2025</td>
@@ -65,7 +65,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">00003</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00003</a></td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Ahmad Fauzi</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">Lowokwaru, Dinoyo</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">23 Nov 2025</td>
@@ -75,7 +75,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">00004</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00004</a></td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Anonim</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">Sukun, Karangbesuki</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">29 Jul 2025</td>
