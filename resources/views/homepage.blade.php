@@ -330,10 +330,10 @@
             <label for="jenis-masalah" class="form-label">Jenis Masalah</label>
             <select id="jenis-masalah" class="form-select">
               <option value="">Pilih jenis masalah</option>
-              <option value="air-keruh">Infrastruktur Air</option>
-              <option value="air-berbau">Sanitasi</option>
-              <option value="tidak-ada-air">Pencemaran Air</option>
-              <option value="air-tercemar">Bencana Terkait Air</option>
+              <option value="infrastruktur-air">Infrastruktur Air</option>
+              <option value="sanitasi">Sanitasi</option>
+              <option value="pencemaran-air">Pencemaran Air</option>
+              <option value="bencana-terkait-air">Bencana Terkait Air</option>
             </select>
           </div>
 
