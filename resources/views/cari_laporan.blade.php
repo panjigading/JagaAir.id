@@ -386,10 +386,10 @@
                         <img src="{{ asset('images/logo-jagaair-bright.png') }}" alt="JagaAir.ID" class="brand-logo-png">
                     </div>
                     <ul class="navbar-menu">
-                        <li><a href="/" class="nav-link">Beranda</a></li>
-                        <li><a href="/#laporan" class="nav-link">Buat Laporan</a></li>
-                        <li><a href="/cari-laporan" class="nav-link">Cari Laporan</a></li>
-                        <li><a href="/#hubungi" class="nav-link">Saran</a></li>
+                        <li><a href="{{ route('home') }}" class="nav-link">Beranda</a></li>
+                        <li><a href="{{ route('home') }}#buat-laporan" class="nav-link">Buat Laporan</a></li>
+                        <li><a href="{{ route('cari_laporan') }}" class="nav-link">Cari Laporan</a></li>
+                        <li><a href="{{ route('form_saran') }}" class="nav-link">Saran</a></li>
                     </ul>
                     <div class="navbar-auth">
                         <button class="btn-signin">Sign In</button>
@@ -538,9 +538,9 @@
             <div class="footer-column">
                 <h5 class="footer-subtitle">Menu</h5>
                 <ul class="footer-links">
-                    <li><a href="/#alur" class="footer-link">Alur Pelaporan</a></li>
-                    <li><a href="/#keunggulan" class="footer-link">Keunggulan</a></li>
-                    <li><a href="/#laporan" class="footer-link">Buat Laporan</a></li>
+                    <li><a href="{{ route('home') }}#buat-laporan" class="footer-link">Buat Laporan</a></li>
+                    <li><a href="{{ route('cari_laporan') }}" class="footer-link">Cari Laporan</a></li>
+                    <li><a href="{{ route('form_saran') }}" class="footer-link">Saran</a></li>
                 </ul>
             </div>
             <div class="footer-column">
