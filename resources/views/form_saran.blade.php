@@ -8,33 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pontano+Sans&family=Gentium+Plus:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
-    <style>
-        .bg-pattern {
-            background: linear-gradient(135deg, #0097A7, #00BCD4, #009688);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        .wave {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%2300bcd4' fill-opacity='0.3' d='M0,160L48,170.7C96,181,192,203,288,202.7C384,203,480,181,576,165.3C672,149,768,139,864,144C960,149,1056,171,1152,181.3C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") repeat-x bottom;
-        }
-        .wave:nth-child(2) {
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230097a7' fill-opacity='0.2' d='M0,160L48,170.7C96,181,192,203,288,202.7C384,203,480,181,576,165.3C672,149,768,139,864,144C960,149,1056,171,1152,181.3C1248,192,1344,192,1392,192L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E") repeat-x top;
-            transform: scaleY(-1);
-        }
-    </style>
 </head>
 <body>
-    <div class="bg-pattern">
-        <div class="wave"></div>
-        <div class="wave"></div>
-    </div>
     <nav class="navbar">
       <div class="navbar-container">
         <div class="navbar-brand">
@@ -42,10 +17,10 @@
         </div>
         <!-- Navigation Menu -->
         <ul class="navbar-menu">
-          <li><a href="#alur" class="nav-link">Beranda</a></li>
-          <li><a href="#laporan" class="nav-link">Buat Laporan</a></li>
-          <li><a href="#laporan" class="nav-link">Cari Laporan</a></li>
-          <li><a href="#hubungi" class="nav-link">Saran</a></li>
+            <li><a href="{{ route('home') }}" class="nav-link">Beranda</a></li>
+            <li><a href="{{ route('home') }}#buat-laporan" class="nav-link">Buat Laporan</a></li>
+            <li><a href="{{ route('cari_laporan') }}" class="nav-link">Cari Laporan</a></li>
+            <li><a href="{{ route('form_saran') }}" class="nav-link">Saran</a></li>
         </ul>
         <!-- Authentication Buttons -->
         <div class="navbar-auth">
@@ -131,9 +106,9 @@
             <div class="footer-column">
                 <h5 class="footer-subtitle">Menu</h5>
                 <ul class="footer-links">
-                    <li><a href="/#alur" class="footer-link">Alur Pelaporan</a></li>
-                    <li><a href="/#keunggulan" class="footer-link">Keunggulan</a></li>
-                    <li><a href="/#laporan" class="footer-link">Buat Laporan</a></li>
+                    <li><a href="{{ route('home') }}#buat-laporan" class="footer-link">Buat Laporan</a></li>
+                    <li><a href="{{ route('cari_laporan') }}" class="footer-link">Cari Laporan</a></li>
+                    <li><a href="{{ route('form_saran') }}" class="footer-link">Saran</a></li>
                 </ul>
             </div>
             <div class="footer-column">
