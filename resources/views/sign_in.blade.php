@@ -98,7 +98,7 @@
             </form>
 
             <p class="text-center text-gray-600 text-sm mt-4">
-                Don't have an account? <a href="" class="text-blue-600 hover:text-blue-800 font-medium">Create Account</a>
+                Don't have an account? <a href="{{ route('sign_up') }}" class="text-blue-600 hover:text-blue-800 font-medium">Create Account</a>
             </p>
         </div>
     </div>

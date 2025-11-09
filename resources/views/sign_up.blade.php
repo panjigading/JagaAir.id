@@ -123,7 +123,7 @@
             </form>
 
             <p class="text-center text-gray-600 text-sm mt-4">
-                Already have an account? <a href="" class="text-blue-600 hover:text-blue-800 font-medium">Sign In</a>
+                Already have an account? <a href="{{ route('sign_in') }}" class="text-blue-600 hover:text-blue-800 font-medium">Sign In</a>
             </p>
         </div>
     </div>
