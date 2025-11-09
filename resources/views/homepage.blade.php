@@ -16,10 +16,10 @@
         </div>
         <!-- Navigation Menu -->
         <ul class="navbar-menu">
-          <li><a href="#alur" class="nav-link">Beranda</a></li>
-          <li><a href="#laporan" class="nav-link">Buat Laporan</a></li>
-          <li><a href="#laporan" class="nav-link">Cari Laporan</a></li>
-          <li><a href="#hubungi" class="nav-link">Saran</a></li>
+          <li><a href="{{ route('home') }}" class="nav-link">Beranda</a></li>
+          <li><a href="#buat-laporan" class="nav-link">Buat Laporan</a></li>
+          <li><a href="{{ route('cari_laporan') }}" class="nav-link">Cari Laporan</a></li>
+          <li><a href="{{ route('form_saran') }}" class="nav-link">Saran</a></li>
         </ul>
         <!-- Authentication Buttons -->
         <div class="navbar-auth">
@@ -57,7 +57,7 @@
       
       <!-- CTA Button dengan animasi -->
       <div class="hero-cta">
-        <a href="#laporan" class="btn-cta-primary">
+        <a href="#buat-laporan" class="btn-cta-primary">
           <span class="btn-text">Buat Laporan</span>
           <span class="btn-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -317,7 +317,7 @@
     </div>
   </section>
 
-  <section id="laporan" class="laporan-section">
+  <section id="buat-laporan" class="laporan-section">
     <h2 class="section-title">Buat Laporan Baru</h2>
     <div class="laporan-container">
       <div class="laporan-form-wrapper">
@@ -384,9 +384,9 @@
       <div class="footer-column">
         <h5 class="footer-subtitle">Menu</h5>
         <ul class="footer-links">
-          <li><a href="#alur" class="footer-link">Alur Pelaporan</a></li>
-          <li><a href="#keunggulan" class="footer-link">Keunggulan</a></li>
-          <li><a href="#laporan" class="footer-link">Buat Laporan</a></li>
+          <li><a href="#buat-laporan" class="footer-link">Buat Laporan</a></li>
+          <li><a href="{{ route('cari_laporan') }}" class="footer-link">Cari Laporan</a></li>
+          <li><a href="{{ route('form_saran') }}" class="footer-link">Saran</a></li>
         </ul>
       </div>
       <div class="footer-column">
@@ -406,4 +406,5 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 </x-app>
