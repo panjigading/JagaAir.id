@@ -1,4 +1,82 @@
-<x-app>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Laporan - JagaAir.ID</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pontano+Sans&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pontano Sans', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .hero-section {
+            background: url('{{ asset('images/hero-bg-1.jpg') }}') no-repeat center center;
+            background-size: cover;
+            padding: 80px 20px;
+            color: white;
+            text-align: center;
+        }
+        .detail-card {
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .info-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 4px;
+            height: calc(100% + 20px);
+            background-color: #ddd;
+            z-index: -1;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 7px;
+            top: 10px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #6c757d;
+        }
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+        .carousel-inner img {
+            border-radius: 12px;
+            height: 300px;
+            object-fit: cover;
+        }
+        .feedback-box {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        .photo-carousel {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
     <section class="hero-section">
         <h1>Lihat Kondisi Air di Sekitar Anda</h1>
         <p>Gunakan fitur pencarian dan filter untuk memantau laporan masalah air dari masyarakat Kota Malang.</p>
@@ -7,11 +85,9 @@
     <!-- Main Content -->
     <div class="container mt-4 mb-5">
         <!-- Back Button -->
-        <a href="#" class="text-decoration-none mb-3 d-inline-block">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left me-1" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.964-3.964A.5.5 0 0 0 6 3a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5c.178 0 .336-.073.447-.184l3.964-3.964A.5.5 0 0 0 11 10.5h1.5a.5.5 0 0 0 .5-.5z"/>
-            </svg>
-            Detail Laporan
+        <a href="{{ route('cari_laporan') }}" class="text-decoration-none mb-3 d-inline-block">
+            <i class="fas fa-arrow-left me-1"></i>
+            Kembali ke Cari Laporan
         </a>
 
         <!-- Detail Laporan Section -->
@@ -59,7 +135,9 @@
                                 <div class="carousel-indicators">
                                     @foreach($report['photos'] as $index => $photo)
                                         <button type="button" data-bs-target="#photoCarousel" data-bs-slide-to="{{ $index }}" 
-                                            class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                                            class="{{ $index == 0 ? 'active' : '' }}" 
+                                            aria-current="{{ $index == 0 ? 'true' : 'false' }}" 
+                                            aria-label="Slide {{ $index + 1 }}"></button>
                                     @endforeach
                                 </div>
                                 <div class="carousel-inner">
@@ -67,7 +145,7 @@
                                         <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                             <img src="{{ asset($photo) }}" class="d-block w-100" alt="Foto Laporan {{ $index + 1 }}">
                                             <div class="carousel-caption d-none d-md-block">
-                                                <p>{{ date('m/d/Y H:i', strtotime('2024-09-24 15:01')) }}</p>
+                                                <p>{{ $report['date'] }}</p>
                                             </div>
                                         </div>
                                     @endforeach
@@ -90,9 +168,10 @@
         <!-- Riwayat Update Laporan Section -->
         <div class="card mt-4 detail-card">
             <div class="card-body">
-                <h4 class="mb-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chat-left-text me-2" viewBox="0 0 16 16">
-                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a1 1 0 0 1-1-1V10.5a3.5 3.5 0 1 0-7 0v2.5a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 5a1 1 0 1 1 2 0 1 1 0 0 1-2 0m0 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0m1.5 3a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
-                </svg> Riwayat Update Laporan</h4>
+                <h4 class="mb-3">
+                    <i class="fas fa-history me-2"></i>
+                    Riwayat Update Laporan
+                </h4>
 
                 <!-- Timeline -->
                 <div class="timeline">
@@ -120,4 +199,7 @@
             </div>
         </div>
     </div>
-</x-app>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

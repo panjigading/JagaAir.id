@@ -72,15 +72,67 @@ Route::post('/logout', function (Request $request) {
 })->name('logout');
 
 Route::get('/cari_laporan/{id}', function ($id) {
-    $suggestions = [
-        '00001' => ['id' => '00001', 'name' => 'ANONIM', 'date' => '20 MAR 2025', 'category' => 'Infrastruktur Air', 'location' => 'Lowokwaru, Jatimulyo'],
+    $reports = [
+        '00001' => [
+            'id' => '00001',
+            'name' => 'ANONIM',
+            'date' => '20 MAR 2025',
+            'category' => 'Infrastruktur Air',
+            'location' => 'Lowokwaru, Jatimulyo',
+            'full_address' => 'Jl. Suhartono No. 15, RT 03 RW 02, Kelurahan Jatimulyo, Kecamatan Lowokwaru, Kota Malang',
+            'photos' => [
+                'images/bukti-laporan.png',
+                'images/bukti-laporan.png',
+                'images/bukti-laporan.png'
+            ],
+            'updates' => [
+                [
+                    'status' => 'MENUNGGU VERIFIKASI',
+                    'timestamp' => '20 MAR 2025, 14:30',
+                    'feedback' => 'Laporan Anda telah kami terima dan sedang menunggu verifikasi dari tim kami.'
+                ],
+                [
+                    'status' => 'TERVERIFIKASI',
+                    'timestamp' => '21 MAR 2025, 09:15',
+                    'feedback' => 'Laporan telah diverifikasi dan akan segera ditindaklanjuti oleh tim lapangan.'
+                ],
+                [
+                    'status' => 'SEDANG DIPROSES',
+                    'timestamp' => '22 MAR 2025, 10:00',
+                    'feedback' => 'Tim lapangan sedang melakukan perbaikan di lokasi yang dilaporkan.'
+                ],
+                [
+                    'status' => 'SELESAI',
+                    'timestamp' => '25 MAR 2025, 16:45',
+                    'feedback' => 'Perbaikan telah selesai dilakukan. Terima kasih atas laporannya.'
+                ]
+            ]
+        ],
+        '00002' => [
+            'id' => '00002',
+            'name' => 'Ahmad Fauzi',
+            'date' => '28 MAY 2025',
+            'category' => 'Sanitasi',
+            'location' => 'Blimbing, Polowijen',
+            'full_address' => 'Jl. Veteran No. 25, RT 02 RW 01, Kelurahan Polowijen, Kecamatan Blimbing, Kota Malang',
+            'photos' => [
+                'images/bukti-laporan.png'
+            ],
+            'updates' => [
+                [
+                    'status' => 'MENUNGGU VERIFIKASI',
+                    'timestamp' => '28 MAY 2025, 08:20',
+                    'feedback' => 'Laporan Anda sedang dalam antrian verifikasi.'
+                ]
+            ]
+        ]
     ];
 
-    $report = $suggestions[$id] ?? null;
+    $report = $reports[$id] ?? null;
 
     if (!$report) {
-        abort(404);
+        abort(404, 'Laporan tidak ditemukan.');
     }
 
     return view('riwayat_update_laporan', compact('report'));
-})->name('riwayat_update_laporan');
+})->where('id', '[0-9]+')->name('riwayat_update_laporan');
