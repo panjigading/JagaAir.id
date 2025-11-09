@@ -425,23 +425,15 @@
                 <!-- Kecamatan -->
                 <div class="bg-white rounded-lg shadow p-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Kecamatan</label>
-                    <select name="kecamatan" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <select id="kecamatanDropdown"  name="kecamatan" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         <option value="">Pilih Kecamatan</option>
-                        <option value="lowokwaru">Lowokwaru</option>
-                        <option value="klojen">Klojen</option>
-                        <option value="blimbing">Blimbing</option>
-                        <option value="sukun">Sukun</option>
                     </select>
                 </div>
                 <!-- Kelurahan -->
                 <div class="bg-white rounded-lg shadow p-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Kelurahan</label>
-                    <select name="kelurahan" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <select id="kelurahanDropdown"  name="kelurahan" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         <option value="">Pilih Kelurahan</option>
-                        <option value="jatimulyo">Jatimulyo</option>
-                        <option value="tlogomas">Tlogomas</option>
-                        <option value="kotalama">Kotalama</option>
-                        <option value="buring">Buring</option>
                     </select>
                 </div>
                 <!-- Kategori -->
@@ -449,10 +441,10 @@
                     <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
                     <select name="kategori" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         <option value="">Pilih Kategori</option>
+                        <option value="infrastruktur-air">Infrastruktur Air</option>
                         <option value="sanitasi">Sanitasi</option>
-                        <option value="infrastruktur">Infrastruktur Air</option>
-                        <option value="kualitas_air">Kualitas Air</option>
-                        <option value="banjir">Banjir</option>
+                        <option value="pencemaran-air">Pencemaran Air</option>
+                        <option value="bencana-terkait-air">Bencana Terkait Air</option>
                     </select>
                 </div>
                 <!-- Status -->
@@ -463,7 +455,7 @@
                         <option value="menunggu">Menunggu Verifikasi</option>
                         <option value="diproses">Diproses</option>
                         <option value="selesai">Selesai</option>
-                        <option value="ditolak">Dikembalikan</option>
+                        <option value="dikembalikan">Dikembalikan</option>
                     </select>
                 </div>
             </div>
@@ -564,6 +556,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="{{ asset('js/kelurahan_kecamatan.js') }}"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
