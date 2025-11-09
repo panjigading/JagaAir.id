@@ -21,7 +21,7 @@ function populateKecamatan() {
 }
 
 function populateKelurahan(selectedKecamatan) {
-    kelurahanDropdown.innerHTML = '<option value="">-- Pilih Kelurahan --</option>';
+    kelurahanDropdown.innerHTML = '<option value="">Pilih Kelurahan</option>';
 
     if (!selectedKecamatan) {
         kelurahanDropdown.disabled = true;
