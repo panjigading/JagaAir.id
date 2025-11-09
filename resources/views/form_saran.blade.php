@@ -33,7 +33,9 @@
         </div>
       </div>
     </nav>
-    <div class="bg-sky-500 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-cover bg-center flex items-center justify-center min-h-screen p-4 border-b"
+        style="background-image: url('{{ asset('images/hero-bg-1.jpg') }}')"
+    >
         <div class="bg-white rounded-xl shadow-2xl p-8 max-w-4xl w-full">
             <div class="flex flex-col md:flex-row gap-8">
                 
