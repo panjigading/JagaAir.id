@@ -28,6 +28,10 @@ body {
   line-height: 1.6;
 }
 
+button {
+  font-family: inherit;
+}
+
 .homepage-wrapper {
   width: 100%;
   overflow-x: hidden;
