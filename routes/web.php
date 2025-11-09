@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('homepage');
 })->name('home');
 
+Route::get('/profil', function () {
+    return view('profil');
+})->name('profil');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('admin.dashboard');
