@@ -76,7 +76,7 @@
                     </div>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center">
-                        <img src="https://i.pravatar.cc/40" class="w-8 h-8 rounded-full">
+                        <img src="{{ asset('images/foto-profil.png') }}" class="w-8 h-8 rounded-full">
                         </div>
                         <div class="text-sm flex flex-col gap-1">
                             <div class="font-medium">JagaAir.id</div>
