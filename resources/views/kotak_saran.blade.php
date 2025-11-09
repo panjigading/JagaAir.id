@@ -79,7 +79,7 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm">
                         <!-- 🔧 Ganti button dengan link ke halaman detail menggunakan named route -->
                         <a href="{{ route('admin.detail_saran', $suggestion['id']) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs">
-                            DETAIL
+                            Detail
                         </a>
                     </td>
                 </tr>
