@@ -30,7 +30,7 @@
 <div class="bg-white p-6 rounded-lg shadow mb-6">
     <div class="flex justify-between items-center mb-4">
         <h3 class="text-lg font-semibold">Laporan Terbaru</h3>
-        <a href="#" class="text-blue-600 hover:underline">Lihat Semua</a>
+        <a href="{{ route('admin.daftar_laporan') }}" class="text-blue-600 hover:underline">Lihat Semua</a>
     </div>
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
@@ -92,7 +92,7 @@
 <div class="bg-white p-6 rounded-lg shadow">
     <div class="flex justify-between items-center mb-4">
         <h3 class="text-lg font-semibold">Saran Terbaru</h3>
-        <a href="#" class="text-blue-600 hover:underline">Lihat Semua</a>
+        <a href="{{ route('admin.kotak_saran') }}" class="text-blue-600 hover:underline">Lihat Semua</a>
     </div>
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
