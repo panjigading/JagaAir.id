@@ -40,17 +40,17 @@
         <td class="px-6 py-4 text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00001</a></td>
         <td>ANONIM</td>
         <td>Lowokwaru, Jatimulyo</td>
-        <td>20 Mar 2025</td>
-        <td>Infrastruktur Air</td>
+        <td>4 Sep 2025</td>
+        <td>Pencemaran Air</td>
         <td><span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-lg">Selesai</span></td>
       </tr>
       <tr class="border-b hover:bg-gray-50">
         <td class="px-6 py-4 text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00002</a></td>
-        <td>Anonim</td>
+        <td>ANONIM</td>
         <td>Blimbing, Purwantoro</td>
-        <td>28 May 2025</td>
+        <td>28 Mei 2025</td>
         <td>Infrastruktur Air</td>
-        <td><span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-lg">Terverifikasi</span></td>
+        <td><span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-lg">Menunggu Verifikasi</span></td>
       </tr>
       <tr class="border-b hover:bg-gray-50">
         <td class="px-6 py-4 text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00003</a></td>
@@ -62,7 +62,7 @@
       </tr>
       <tr class="border-b hover:bg-gray-50">
         <td class="px-6 py-4 text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00004</a></td>
-        <td>Anonim</td>
+        <td>ANONIM</td>
         <td>Sukun, Karangbesuki</td>
         <td>29 Jul 2025</td>
         <td>Bencana Terkait Air</td>
