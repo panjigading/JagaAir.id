@@ -457,10 +457,9 @@
                     <select name="status" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         <option value="">Pilih Status</option>
                         <option value="menunggu">Menunggu Verifikasi</option>
-                        <option value="terverifikasi">Terverifikasi</option>
-                        <option value="diproses">Sedang Diproses</option>
+                        <option value="diproses">Diproses</option>
                         <option value="selesai">Selesai</option>
-                        <option value="ditolak">Ditolak</option>
+                        <option value="ditolak">Dikembalikan</option>
                     </select>
                 </div>
             </div>
