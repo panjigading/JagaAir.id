@@ -111,9 +111,11 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm">20 Mar 2025</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">Infrastruktur Air</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs">
-                        Detail
-                    </button>
+                    <a href="{{ route('admin.detail_saran', ['id' => '00001']) }}">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs">
+                            Detail
+                        </button>
+                    </a>
                 </td>
             </tr>
         </tbody>
