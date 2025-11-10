@@ -7,7 +7,7 @@
 <h2 class="text-2xl font-bold mb-6">Dashboard</h2>
 
 <!-- Stat Cards -->
-<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
     <div class="bg-white p-4 rounded-lg shadow">
         <p class="text-gray-500">Total Laporan</p>
         <p class="text-2xl font-bold text-blue-600">990</p>
@@ -19,6 +19,10 @@
     <div class="bg-white p-4 rounded-lg shadow">
         <p class="text-gray-500">Diproses</p>
         <p class="text-2xl font-bold text-blue-600">15</p>
+    </div>
+    <div class="bg-white p-4 rounded-lg shadow">
+        <p class="text-gray-500">Dikembalikan</p>
+        <p class="text-2xl font-bold text-blue-600">25</p>
     </div>
     <div class="bg-white p-4 rounded-lg shadow">
         <p class="text-gray-500">Selesai</p>
