@@ -21,6 +21,9 @@
             <div class="mt-3 text-sm text-slate-500">Kelurahan</div>
             <div class="font-medium">Jatimulyo</div>
 
+            <div class="mt-3 text-sm text-slate-500">Alamat Lengkap</div>
+            <div class="font-medium"> Jl. Suhartono No. 15, RT 03 RW 02, Kelurahan Jatimulyo, Kecamatan Lowokwaru, Kota Malang</div>
+
             <div class="mt-3 text-sm text-slate-500">Tanggal Pelaporan</div>
             <div class="font-medium">20 Maret 2025</div>
 
