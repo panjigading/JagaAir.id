@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('profile_picture')->nullable()->after('email');
+            $table->string('nik')->after('name');
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('profile_picture');
+            $table->dropColumn('nik');
         });
     }
 };
