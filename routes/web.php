@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -62,10 +63,6 @@ Route::get('/sign_in', function () {
     return view('sign_in');
 })->name('sign_in');
 
-Route::get('/cari_laporan', function () {
-    return view('cari_laporan');
-})->name('cari_laporan');
-
 Route::post('/logout', function (Request $request) {
     if (function_exists('auth') && auth()->check()) {
         Auth::logout();
@@ -75,68 +72,16 @@ Route::post('/logout', function (Request $request) {
     return redirect('/');
 })->name('logout');
 
-Route::get('/cari_laporan/{id}', function ($id) {
-    $reports = [
-        '00001' => [
-            'id' => '00001',
-            'name' => 'ANONIM',
-            'date' => '20 MAR 2025',
-            'category' => 'Infrastruktur Air',
-            'location' => 'Lowokwaru, Jatimulyo',
-            'full_address' => 'Jl. Suhartono No. 15, RT 03 RW 02, Kelurahan Jatimulyo, Kecamatan Lowokwaru, Kota Malang',
-            'photos' => [
-                'images/bukti-laporan.png',
-                'images/bukti-laporan.png',
-                'images/bukti-laporan.png'
-            ],
-            'updates' => [
-                [
-                    'status' => 'MENUNGGU VERIFIKASI',
-                    'timestamp' => '20 MAR 2025, 14:30',
-                    'feedback' => 'Laporan Anda telah kami terima dan sedang menunggu verifikasi dari tim kami.'
-                ],
-                [
-                    'status' => 'TERVERIFIKASI',
-                    'timestamp' => '21 MAR 2025, 09:15',
-                    'feedback' => 'Laporan telah diverifikasi dan akan segera ditindaklanjuti oleh tim lapangan.'
-                ],
-                [
-                    'status' => 'SEDANG DIPROSES',
-                    'timestamp' => '22 MAR 2025, 10:00',
-                    'feedback' => 'Tim lapangan sedang melakukan perbaikan di lokasi yang dilaporkan.'
-                ],
-                [
-                    'status' => 'SELESAI',
-                    'timestamp' => '25 MAR 2025, 16:45',
-                    'feedback' => 'Perbaikan telah selesai dilakukan. Terima kasih atas laporannya.'
-                ]
-            ]
-        ],
-        '00002' => [
-            'id' => '00002',
-            'name' => 'Ahmad Fauzi',
-            'date' => '28 MAY 2025',
-            'category' => 'Sanitasi',
-            'location' => 'Blimbing, Polowijen',
-            'full_address' => 'Jl. Veteran No. 25, RT 02 RW 01, Kelurahan Polowijen, Kecamatan Blimbing, Kota Malang',
-            'photos' => [
-                'images/bukti-laporan.png'
-            ],
-            'updates' => [
-                [
-                    'status' => 'MENUNGGU VERIFIKASI',
-                    'timestamp' => '28 MAY 2025, 08:20',
-                    'feedback' => 'Laporan Anda sedang dalam antrian verifikasi.'
-                ]
-            ]
-        ]
-    ];
+// ============ ROUTES UNTUK LAPORAN & RIWAYAT LAPORAN ============
+// Routes untuk cari laporan dengan filter & search
+Route::get('/cari_laporan', [LaporanController::class, 'cariLaporan'])->name('cari_laporan');
 
-    $report = $reports[$id] ?? null;
+// Routes untuk detail laporan dan riwayat update
+Route::get('/cari_laporan/{id}', [LaporanController::class, 'detailLaporan'])
+    ->where('id', '[0-9]+')
+    ->name('detail_laporan');
 
-    if (!$report) {
-        abort(404, 'Laporan tidak ditemukan.');
-    }
-
-    return view('riwayat_update_laporan', compact('report'));
-})->where('id', '[0-9]+')->name('riwayat_update_laporan');
+// Route untuk update status laporan (admin only)
+Route::post('/cari_laporan/{id}/update-status', [LaporanController::class, 'updateStatus'])
+    ->where('id', '[0-9]+')
+    ->name('update_status_laporan');

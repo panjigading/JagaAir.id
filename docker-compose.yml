@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # Ini adalah nama service database kita
+  db-mariadb:
+    # Menggunakan image resmi MariaDB
+    image: mariadb:10.6 
+    
+    # Selalu restart container jika gagal
+    restart: unless-stopped
+    
+    # Pengaturan Environment (PENTING)
+    environment:
+      # Mengatur password 'root' Anda
+      MYSQL_ROOT_PASSWORD: rahasia 
+      
+      # Langsung buat database untuk Laravel Anda
+      MYSQL_DATABASE: db_project_laravel 
+    
+    # Mapping Port:
+    # [Port di Komputer Anda] : [Port di dalam Container]
+    ports:
+      - "3306:3306" 
+      
+    # Menyimpan data database Anda secara permanen
+    volumes:
+      - mariadb-data:/var/lib/mysql 
+      
+# Mendefinisikan volume yang dipakai
+volumes:
+  mariadb-data:
+    driver: local
