@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SaranController; // 🔧 Tambahkan ini untuk mengimpor controller
+use App\Http\Controllers\DetailLaporanController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -17,9 +18,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('admin.dashboard');
 
-Route::get('/dashboard/detail_laporan', function () {
-    return view('detail_laporan');
-})->name('admin.detail_laporan');
+Route::get('/dashboard/detail_laporan/{id}', [DetailLaporanController::class, 'show'])
+    ->name('admin.detail_laporan');
+
+Route::post('/dashboard/detail_laporan/{id}', [DetailLaporanController::class, 'update'])
+    ->name('admin.update_detail_laporan');
 
 Route::get('/dashboard/daftar_laporan', function () {
     return view('daftar_laporan');

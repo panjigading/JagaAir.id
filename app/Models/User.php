@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nik',
+        'foto_profil',
     ];
 
     /**
@@ -44,5 +46,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function laporans()
+    {
+        // Reference the foreign key column 'id_pengguna' in the 'laporan' table
+        return $this->hasMany(Laporan::class, 'id_pengguna'); 
     }
 }
