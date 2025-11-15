@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SaranController; // 🔧 Tambahkan ini untuk mengimpor controller
 
 Route::get('/', function () {
     return view('homepage');
@@ -50,9 +51,9 @@ Route::get('/dashboard/kotak_saran/{id}', function ($id) {
     return view('detail_saran', ['suggestion' => $suggestion]);
 })->where('id', '[0-9]+')->name('admin.detail_saran'); 
 
-Route::get('/form_saran', function () {
-    return view('form_saran');
-})->name('form_saran');
+// 🔧 Ganti route form saran dengan route yang menggunakan controller
+Route::get('/form_saran', [SaranController::class, 'create'])->name('form_saran');
+Route::post('/form_saran', [SaranController::class, 'store'])->name('form_saran.store');
 
 Route::get('/sign_up', function () {
     return view('sign_up');
