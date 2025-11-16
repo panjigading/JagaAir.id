@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\SaranController;
+use App\Http\Controllers\DetailLaporanController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -13,9 +16,7 @@ Route::get('/profil', function () {
     return view('profil');
 })->name('profil');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('admin.dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::get('/dashboard/detail_laporan/{id}', [DetailLaporanController::class, 'show'])
     ->name('admin.detail_laporan');

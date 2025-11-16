@@ -48,46 +48,38 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
+            @forelse($laporans as $laporan)
+            @php
+                $latest = $laporan->latestRiwayat ?? null;
+                $status = strtolower($latest->status ?? $laporan->status ?? 'menunggu');
+
+                // Map status to label and badge classes to match RiwayatLaporanSeeder
+                $statusMap = [
+                    'menunggu' => ['label' => 'Menunggu', 'class' => 'bg-blue-100 text-blue-700'],
+                    'terverifikasi' => ['label' => 'Terverifikasi', 'class' => 'bg-indigo-100 text-indigo-700'],
+                    'diproses' => ['label' => 'Diproses', 'class' => 'bg-yellow-100 text-yellow-700'],
+                    'selesai' => ['label' => 'Selesai', 'class' => 'bg-green-100 text-green-700'],
+                    'dikembalikan' => ['label' => 'Dikembalikan', 'class' => 'bg-red-100 text-red-600'],
+                ];
+
+                $statusLabel = $statusMap[$status]['label'] ?? ucfirst($status);
+                $badgeClass = $statusMap[$status]['class'] ?? 'bg-blue-100 text-blue-700';
+            @endphp
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00001</a></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">ANONIM</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">Lowokwaru, Jatimulyo</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">04 Sep 2025</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">Pencemaran Air</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan', ['id' => $laporan->id]) }}">{{ sprintf('%05d', $laporan->id) }}</a></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{{ $laporan->user->name ?? $laporan->display_name ?? 'ANONIM' }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->location_display ?? ($laporan->kelurahan . ', ' . $laporan->kecamatan) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->created_at->format('d M Y') }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->kategori }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-lg">Selesai</span>
+                    <span class="px-3 py-1 {{ $badgeClass }} text-xs font-medium rounded-lg">{{ $statusLabel }}</span>
                 </td>
             </tr>
+            @empty
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00002</a></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">ANONIM</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">Blimbing, Purwantoro</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">28 Mei 2025</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">Infrastruktur Air</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-lg">Menunggu Verifikasi</span>
-                </td>
+                <td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada laporan terbaru.</td>
             </tr>
-            <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00003</a></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">Ahmad Fauzi</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">Lowokwaru, Dinoyo</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">23 Nov 2025</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">Sanitasi</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <span class="px-3 py-1 bg-red-100 text-red-600 text-xs font-medium rounded-lg">Ditolak</span>
-                </td>
-            </tr>
-            <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00004</a></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">ANONIM</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">Sukun, Karangbesuki</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">29 Jul 2025</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">Bencana Terkait Air</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-medium rounded-lg">Diproses</span>
-                </td>
-            </tr>
+            @endforelse
         </tbody>
     </table>
 </div>
@@ -109,19 +101,25 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
+            @forelse($saran as $item)
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">00001</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">ANONIM</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">20 Mar 2025</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">Infrastruktur Air</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ sprintf('%05d', $item->id_saran) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{{ $item->user->name ?? 'ANONIM' }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $item->tanggal->format('d M Y') }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $item->kategori }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <a href="{{ route('admin.detail_saran', ['id' => '00001']) }}">
+                    <a href="{{ route('admin.kotak_saran') }}">
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs">
                             Detail
                         </button>
                     </a>
                 </td>
             </tr>
+            @empty
+            <tr>
+                <td colspan="5" class="px-6 py-4 text-center text-gray-500">Tidak ada saran terbaru.</td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
 </div>
