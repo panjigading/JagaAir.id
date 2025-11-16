@@ -9,11 +9,17 @@
         <div>
             <div>
                 @php
-                    $currentHistory = $detailLaporan->riwayatLaporans->first();
-                    $currentStatus = $currentHistory ? $currentHistory->status : 'No History';
+                    $currentStatus = $detailLaporan->latestRiwayat->status;
                 @endphp
                 <div class="text-sm text-slate-500">Status</div>
-                <div class="inline-block mt-1 px-3 py-1 rounded-full text-sm font-medium text-white bg-emerald-500">{{ $currentStatus }}</div>
+                <div class="inline-block mt-1 px-3 py-1 rounded-full text-sm font-medium
+                    @if($currentStatus == 'menunggu') bg-gray-500 text-white
+                    @elseif($currentStatus == 'diproses') bg-yellow-500 text-white
+                    @elseif($currentStatus == 'selesai') bg-green-500 text-white
+                    @elseif($currentStatus == 'dikembalikan') bg-red-500 text-white
+                    @endif">
+                    {{ Str::title($currentStatus) }}
+                </div>
             </div>
 
             <div class="mt-3 text-sm text-slate-500">Nama Pelapor</div>

@@ -49,34 +49,24 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                <!-- Contoh Data -->
-                @php
-                    $suggestions = [
-                        ['id' => '00001', 'name' => 'ANONIM', 'date' => '20 MAR 2025', 'category' => 'Infrastruktur Air'],
-                        ['id' => '00002', 'name' => 'ANONIM', 'date' => '28 May 2025', 'category' => 'Infrastruktur Air'],
-                        ['id' => '00003', 'name' => 'Ahmad Fauzi', 'date' => '23 Nov 2025', 'category' => 'Sanitasi'],
-                        ['id' => '00004', 'name' => 'Gilbert Johnston', 'date' => '05 Feb 2025', 'category' => 'Pelayanan & Respons Petugas'],
-                        ['id' => '00005', 'name' => 'Anonim', 'date' => '29 Jul 2025', 'category' => 'Edukasi & Sosialisasi'],
-                        ['id' => '00006', 'name' => 'Alfred Murray', 'date' => '15 Aug 2025', 'category' => 'Inovasi & Ide Baru'],
-                        ['id' => '00007', 'name' => 'Maggie Sullivan', 'date' => '21 Dec 2025', 'category' => 'Sistem & Aplikasi'],
-                        ['id' => '00008', 'name' => 'Rosie Todd', 'date' => '30 Apr 2025', 'category' => 'Infrastruktur Air'],
-                        ['id' => '00009', 'name' => 'Anonim', 'date' => '09 Jan 2025', 'category' => 'Sistem & Aplikasi'],
-                    ];
-                @endphp
-
-                @foreach($suggestions as $suggestion)
+                @foreach($daftar_saran as $saran)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $suggestion['id'] }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $suggestion['name'] }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $suggestion['date'] }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $saran->id_saran }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    @if ($saran->user)
+                        {{ $saran->user->name }}
+                    @else
+                        ( Anonim )
+                    @endif
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $saran['tanggal'] }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                            {{ $suggestion['category'] }}
+                            {{ $saran['kategori'] }}
                         </span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm">
-                        <!-- 🔧 Ganti button dengan link ke halaman detail menggunakan named route -->
-                        <a href="{{ route('admin.detail_saran', $suggestion['id']) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs">
+                        <a href="{{ route('admin.kotak_saran.show', $saran) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs">
                             Detail
                         </a>
                     </td>

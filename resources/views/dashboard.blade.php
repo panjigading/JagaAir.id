@@ -3,34 +3,30 @@
 @section('title', 'Dashboard | JagaAir.id')
 
 @section('content')
-<!-- Dashboard Content -->
 <h2 class="text-2xl font-bold mb-6">Dashboard</h2>
-
-<!-- Stat Cards -->
 <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
     <div class="bg-white p-4 rounded-lg shadow">
         <p class="text-gray-500">Total Laporan</p>
-        <p class="text-2xl font-bold text-blue-600">990</p>
+        <p class="text-2xl font-bold text-blue-600">{{ $stat['totalLaporan'] }}</p>
     </div>
     <div class="bg-white p-4 rounded-lg shadow">
         <p class="text-gray-500">Menunggu Verifikasi</p>
-        <p class="text-2xl font-bold text-blue-600">30</p>
+        <p class="text-2xl font-bold text-blue-600">{{ $stat['menungguVerifikasi'] }}</p>
     </div>
     <div class="bg-white p-4 rounded-lg shadow">
         <p class="text-gray-500">Diproses</p>
-        <p class="text-2xl font-bold text-blue-600">15</p>
+        <p class="text-2xl font-bold text-blue-600">{{ $stat['diproses'] }}</p>
     </div>
     <div class="bg-white p-4 rounded-lg shadow">
         <p class="text-gray-500">Dikembalikan</p>
-        <p class="text-2xl font-bold text-blue-600">25</p>
+        <p class="text-2xl font-bold text-blue-600">{{ $stat['dikembalikan'] }}</p>
     </div>
     <div class="bg-white p-4 rounded-lg shadow">
         <p class="text-gray-500">Selesai</p>
-        <p class="text-2xl font-bold text-blue-600">920</p>
+        <p class="text-2xl font-bold text-blue-600">{{ $stat['selesai'] }}</p>
     </div>
 </div>
 
-<!-- Recent Reports -->
 <div class="bg-white p-6 rounded-lg shadow mb-6">
     <div class="flex justify-between items-center mb-4">
         <h3 class="text-lg font-semibold">Laporan Terbaru</h3>
@@ -48,47 +44,36 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            @forelse($laporans as $laporan)
-            @php
-                $latest = $laporan->latestRiwayat ?? null;
-                $status = strtolower($latest->status ?? $laporan->status ?? 'menunggu');
-
-                // Map status to label and badge classes to match RiwayatLaporanSeeder
-                $statusMap = [
-                    'menunggu' => ['label' => 'Menunggu', 'class' => 'bg-blue-100 text-blue-700'],
-                    'terverifikasi' => ['label' => 'Terverifikasi', 'class' => 'bg-indigo-100 text-indigo-700'],
-                    'diproses' => ['label' => 'Diproses', 'class' => 'bg-yellow-100 text-yellow-700'],
-                    'selesai' => ['label' => 'Selesai', 'class' => 'bg-green-100 text-green-700'],
-                    'dikembalikan' => ['label' => 'Dikembalikan', 'class' => 'bg-red-100 text-red-600'],
-                ];
-
-                $statusLabel = $statusMap[$status]['label'] ?? ucfirst($status);
-                $badgeClass = $statusMap[$status]['class'] ?? 'bg-blue-100 text-blue-700';
-            @endphp
+            @foreach ($daftar_laporan as $laporan)
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan', ['id' => $laporan->id]) }}">{{ sprintf('%05d', $laporan->id) }}</a></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{{ $laporan->user->name ?? $laporan->display_name ?? 'ANONIM' }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->location_display ?? ($laporan->kelurahan . ', ' . $laporan->kecamatan) }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->created_at->format('d M Y') }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan', $laporan->id) }}">{{ $laporan->id }}</a></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{{ $laporan->pengguna->name ?? '(Anonim)' }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->kecamatan }}, {{ $laporan->kelurahan }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->created_at->format('d F Y') }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->kategori }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <span class="px-3 py-1 {{ $badgeClass }} text-xs font-medium rounded-lg">{{ $statusLabel }}</span>
+                <td class="text-center">
+                @php
+                    $currentStatus = $laporan->latestRiwayat->status;
+                @endphp
+                <span class="px-3 py-1 text-xs font-medium rounded-lg
+                    @if($currentStatus == 'menunggu') bg-gray-500 text-white
+                    @elseif($currentStatus == 'diproses') bg-yellow-500 text-white
+                    @elseif($currentStatus == 'selesai') bg-green-500 text-white
+                    @elseif($currentStatus == 'dikembalikan') bg-red-500 text-white
+                    @endif">
+                    {{ Str::title($currentStatus) }}
+                </span>
                 </td>
             </tr>
-            @empty
-            <tr>
-                <td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada laporan terbaru.</td>
-            </tr>
-            @endforelse
+            @endforeach
         </tbody>
     </table>
 </div>
 
-<!-- Recent Suggestions -->
 <div class="bg-white p-6 rounded-lg shadow">
     <div class="flex justify-between items-center mb-4">
         <h3 class="text-lg font-semibold">Saran Terbaru</h3>
-        <a href="{{ route('admin.kotak_saran') }}" class="text-blue-600 hover:underline">Lihat Semua</a>
+        <a href="{{ route('admin.kotak_saran.index') }}" class="text-blue-600 hover:underline">Lihat Semua</a>
     </div>
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
@@ -101,25 +86,29 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            @forelse($saran as $item)
-            <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ sprintf('%05d', $item->id_saran) }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{{ $item->user->name ?? 'ANONIM' }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $item->tanggal->format('d M Y') }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $item->kategori }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <a href="{{ route('admin.kotak_saran') }}">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs">
+                @foreach($daftar_saran as $saran)
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $saran['id_saran'] }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    @if ($saran->user)
+                        {{ $saran->user->name }}
+                    @else
+                        ( Anonim )
+                    @endif
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $saran['tanggal'] }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                            {{ $saran['kategori'] }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        <a href="{{ route('admin.kotak_saran.show', $saran) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs">
                             Detail
-                        </button>
-                    </a>
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="5" class="px-6 py-4 text-center text-gray-500">Tidak ada saran terbaru.</td>
-            </tr>
-            @endforelse
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
         </tbody>
     </table>
 </div>

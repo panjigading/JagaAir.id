@@ -16,7 +16,7 @@ class DetailLaporanController extends Controller
     {
         $detailLaporan = Laporan::findOrFail($id);
         
-        $detailLaporan->load('riwayatLaporans'); 
+        $detailLaporan->load('riwayats');
 
         return view('detail_laporan', compact('detailLaporan'));
 

@@ -5,7 +5,6 @@
 @section('content')
 <h2 class="text-2xl font-bold mb-6">Daftar Laporan</h2>
 
-<!-- Filter -->
 <form class="flex items-center justify-between gap-4 mb-6">
   <div class="flex gap-4 items-center">
     <span class="text-gray-500">Filter:</span>
@@ -45,7 +44,6 @@
   </div>
 </form> 
 
-<!-- Table -->
 <div class="bg-white shadow-md rounded-lg overflow-hidden">
   <table class="w-full text-left text-sm">
     <thead class="bg-gray-50">
@@ -59,38 +57,28 @@
       </tr>
     </thead>
     <tbody>
+      @foreach ($daftar_laporan as $laporan)
       <tr class="border-b hover:bg-gray-50">
-        <td class="px-6 py-4 text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00001</a></td>
-        <td>ANONIM</td>
-        <td>Lowokwaru, Jatimulyo</td>
-        <td>4 Sep 2025</td>
-        <td>Pencemaran Air</td>
-        <td><span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-lg">Selesai</span></td>
+        <td class="px-6 py-4 text-blue-500 underline"><a href="{{ route('admin.detail_laporan', $laporan->id) }}">{{ $laporan->id }}</a></td>
+        <td>{{ $laporan->pengguna->name ?? '(Anonim)' }}</td>
+        <td>{{ $laporan->kecamatan }}, {{ $laporan->kelurahan }}</td>
+        <td>{{ $laporan->created_at->format('d F Y') }}</td>
+        <td>{{ $laporan->kategori }}</td>
+        <td class="text-center">
+          @php
+            $currentStatus = $laporan->latestRiwayat->status;
+          @endphp
+          <span class="px-3 py-1 text-xs font-medium rounded-lg
+              @if($currentStatus == 'menunggu') bg-gray-500 text-white
+              @elseif($currentStatus == 'diproses') bg-yellow-500 text-white
+              @elseif($currentStatus == 'selesai') bg-green-500 text-white
+              @elseif($currentStatus == 'dikembalikan') bg-red-500 text-white
+              @endif">
+              {{ Str::title($currentStatus) }}
+          </span>
+        </td>
       </tr>
-      <tr class="border-b hover:bg-gray-50">
-        <td class="px-6 py-4 text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00002</a></td>
-        <td>ANONIM</td>
-        <td>Blimbing, Purwantoro</td>
-        <td>28 Mei 2025</td>
-        <td>Infrastruktur Air</td>
-        <td><span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-lg">Menunggu Verifikasi</span></td>
-      </tr>
-      <tr class="border-b hover:bg-gray-50">
-        <td class="px-6 py-4 text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00003</a></td>
-        <td>Ahmad Fauzi</td>
-        <td>Lowokwaru, Dinoyo</td>
-        <td>23 Nov 2025</td>
-        <td>Sanitasi</td>
-        <td><span class="px-3 py-1 bg-red-100 text-red-600 text-xs font-medium rounded-lg">Ditolak</span></td>
-      </tr>
-      <tr class="border-b hover:bg-gray-50">
-        <td class="px-6 py-4 text-blue-500 underline"><a href="{{ route('admin.detail_laporan') }}">00004</a></td>
-        <td>ANONIM</td>
-        <td>Sukun, Karangbesuki</td>
-        <td>29 Jul 2025</td>
-        <td>Bencana Terkait Air</td>
-        <td><span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-medium rounded-lg">Diproses</span></td>
-      </tr>
+      @endforeach
     </tbody>
   </table>
 </div>
