@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AccountController;
+use App\Http\Middleware\AdminAuthenticate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,45 +17,36 @@ Route::get('/', function () {
 
 Route::post('/buat_laporan', [LaporanController::class, 'buatLaporan'])->name('buat_laporan');
 
-Route::get('/profil', function () {
-    return view('profil');
-})->name('profil');
+Route::get('/profil', [AccountController::class, 'userProfile'])->name('profil');
 
-Route::get('/dashboard', [DasboardController::class, 'dashboard'])
-    ->name('admin.dashboard');
+Route::middleware([AdminAuthenticate::class])->group(function () {
 
-Route::get('/dashboard/daftar_laporan', [DasboardController::class, 'daftar_laporan'])
-    ->name('admin.daftar_laporan');
+    Route::get('/dashboard', [DasboardController::class, 'dashboard'])
+        ->name('admin.dashboard');
 
-Route::get('/dashboard/detail_laporan/{id}', [DetailLaporanController::class, 'show'])
-    ->name('admin.detail_laporan');
+    Route::get('/dashboard/daftar_laporan', [DasboardController::class, 'daftar_laporan'])
+        ->name('admin.daftar_laporan');
 
-Route::post('/dashboard/detail_laporan/{id}', [DetailLaporanController::class, 'update'])
-    ->name('admin.update_detail_laporan');
+    Route::get('/dashboard/detail_laporan/{id}', [DetailLaporanController::class, 'show'])
+        ->name('admin.detail_laporan');
 
-Route::get('/dashboard/detail_saran/{id}', [KotakSaranController::class, 'show'])->name('admin.kotak_saran.show');
-Route::delete('/dashboard/detail_saran/hapus/{id}', [KotakSaranController::class, 'destroy'])->name('admin.kotak_saran.destroy');
-Route::get('/dashboard/kotak_saran', [KotakSaranController::class, 'index'])->name('admin.kotak_saran.index');
+    Route::post('/dashboard/detail_laporan/{id}', [DetailLaporanController::class, 'update'])
+        ->name('admin.update_detail_laporan');
+
+    Route::get('/dashboard/detail_saran/{id}', [KotakSaranController::class, 'show'])->name('admin.kotak_saran.show');
+    Route::delete('/dashboard/detail_saran/hapus/{id}', [KotakSaranController::class, 'destroy'])->name('admin.kotak_saran.destroy');
+    Route::get('/dashboard/kotak_saran', [KotakSaranController::class, 'index'])->name('admin.kotak_saran.index');
+
+});
 
 Route::get('/form_saran', [SaranController::class, 'create'])->name('form_saran');
 Route::post('/form_saran', [SaranController::class, 'store'])->name('form_saran.store');
 
-Route::get('/sign_up', function () {
-    return view('sign_up');
-})->name('sign_up');
-
-Route::get('/sign_in', function () {
-    return view('sign_in');
-})->name('sign_in');
-
-Route::post('/logout', function (Request $request) {
-    if (function_exists('auth') && auth()->check()) {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-    }
-    return redirect('/');
-})->name('logout');
+Route::get('/sign_up', [AccountController::class, 'showSignUpForm'])->name('sign_up');
+Route::post('/sign_up', [AccountController::class, 'createAccount'])->name('sign_up.create');
+Route::get('/sign_in', [AccountController::class, 'showSignInForm'])->name('sign_in');
+Route::post('/sign_in', [AccountController::class, 'signIn'])->name('sign_in.create');
+Route::post('/logout', [AccountController::class, 'logout'])->name('logout');
 
 // ============ ROUTES UNTUK LAPORAN & RIWAYAT LAPORAN ============
 // Routes untuk cari laporan dengan filter & search

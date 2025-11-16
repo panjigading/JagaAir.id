@@ -21,6 +21,14 @@
             <li><a href="{{ route('cari_laporan') }}" class="nav-link">Cari Laporan</a></li>
             <li><a href="{{ route('form_saran') }}" class="nav-link">Saran</a></li>
         </ul>
+        @auth('web')
+        <div class="navbar-auth">
+          <a href="{{ route('profil') }}">
+            <button class="btn-signin">Akun</button>
+          </a>
+        </div>
+        @endauth
+        @guest
         <div class="navbar-auth">
           <a href="{{ route('sign_in') }}">
             <button class="btn-signin">Sign In</button>
@@ -29,18 +37,22 @@
             <button class="btn-signup">Sign Up</button>
           </a>
         </div>
+        @endguest
       </div>
     </nav>
     <div class="bg-cover bg-center flex justify-center min-h-screen p-4 border-b"
         style="background-image: url('{{ asset('images/hero-bg-1.jpg') }}')"
     >
         <main class="max-w-xl w-full relative bg-white p-8 rounded-xl shadow-2xl border border-gray-200 mt-32 mb-16">
-            <button class="flex items-center gap-2 text-sm absolute m-4 top-0 right-0 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-300">
-                Log Out
-                <svg class="w-[20px] h-[20px] text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/>
-                </svg>
-            </button>
+            <form method="POST" action="{{ route('logout') }}" class="m-0">
+                @csrf
+                <button type="submit" class="flex items-center gap-2 text-sm absolute m-4 top-0 right-0 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-300">
+                    Log Out
+                    <svg class="w-[20px] h-[20px] text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/>
+                    </svg>
+                </button>
+            </form>
             <div class="flex flex-col items-center">
                 <img class="h-32 w-32 rounded-full object-cover shadow-lg mt-4" src="{{ asset('images/foto-profil.png') }}" alt="Foto Profil Pengguna">
                 <p class="text-center text-lg text-bold mt-4">
@@ -68,19 +80,19 @@
                     </div>
                     <div>
                         <label for="nama" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-                        <input type="text" id="nama" name="nama" value="Ahmad Fauzi" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" readonly>
+                        <input type="text" id="nama" name="nama" value="{{ $user->name }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
                     <div>
                         <label for="nik" class="block text-sm font-medium text-gray-700">NIK (Nomor Induk Kependudukan)</label>
-                        <input type="text" id="nik" name="nik" value="357305200672340007" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" readonly>
+                        <input type="text" id="nik" name="nik" value="{{ $user->nik }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="email" name="email" value="ahmadfauzi@gmail.com" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                        <input type="email" id="email" name="email" value="{{ $user->email }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
                     <div>
                         <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                        <input type="password" id="password" name="password" value="******" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                        <input type="password" id="password" name="password" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
                     <div class="pt-4">
                         <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
