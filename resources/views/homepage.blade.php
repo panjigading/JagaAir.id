@@ -325,6 +325,16 @@
     <h2 class="section-title">Buat Laporan Baru</h2>
     <div class="laporan-container">
       <div class="laporan-form-wrapper">
+        @if (session('error'))
+          <div id="error-alert" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-lg shadow-md" role="alert">
+              <div class="flex items-center">
+                  <div>
+                      <p class="font-bold">Proses Gagal!</p>
+                      <p class="text-sm">{{ session('error') }}</p>
+                  </div>
+              </div>
+          </div>
+        @endif
         <form class="laporan-form" method="POST" action="{{ route('buat_laporan') }}" enctype="multipart/form-data">
           @csrf
           <div class="form-group">

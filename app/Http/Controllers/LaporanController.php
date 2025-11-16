@@ -7,6 +7,8 @@ use App\Models\RiwayatLaporan;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 
 class LaporanController extends Controller
 {
@@ -31,7 +33,7 @@ class LaporanController extends Controller
 
             $path = $request->file('url_bukti')->store('laporan_bukti', 'public');
             
-            Laporan::create([
+            $laporan = Laporan::create([
                 'user_id' => auth()->id(),
                 'kategori' => $validatedData['kategori'],
                 'kecamatan' => $validatedData['kecamatan'],
@@ -41,19 +43,31 @@ class LaporanController extends Controller
                 'url_bukti' => $path, 
             ]);
 
+            $riwayat = $laporan->riwayats()->create([
+                'status' => "Menunggu",
+            ]);
+
+            DB::commit();
+
             return redirect()->route('cari_laporan')->with('success', 'Laporan Anda telah berhasil diajukan!');
         } catch (ValidationException $e) {
             return redirect()->back()
                 ->withInput()
                 ->withErrors($e->errors())
                 ->withFragment('buat-laporan');
-        } catch (\Exception $e) {
+        } catch (QueryException $e) {
+            DB::rollBack();
+
+            $errorMessage = $this->getDatabaseErrorMessage($e);
+
+            return redirect()->back()->with('error', $errorMessage)->withInput();
+        }catch (\Exception $e) {
             $errorMessage = 'Terjadi kesalahan tak terduga. Silakan hubungi administrator.';
             
             return redirect()->back()
                 ->withInput()
                 ->with('error', $errorMessage)
-                ->withFragment('laporan-form');
+                ->withFragment('buat-laporan');
         }
     }
 
