@@ -37,6 +37,18 @@
         style="background-image: url('{{ asset('images/hero-bg-1.jpg') }}')"
     >
         <div class="bg-white rounded-xl shadow-2xl p-8 max-w-4xl w-full">
+            @if (session('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Terjadi Kesalahan!</strong>
+                <span class="block sm:inline">{{ session('error') }}</span>
+            </div>
+            @endif
+
+            @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline">{{ session('success') }}</span>
+            </div>
+            @endif
             <div class="flex flex-col md:flex-row gap-8">
                 
                 <div class="md:w-1/2 flex flex-col items-center justify-center p-4 border-b md:border-b-0 md:border-r border-gray-200">
@@ -47,24 +59,31 @@
 
                 <div class="md:w-1/2 p-4">
                     
-                    <form action="#" method="POST" class="space-y-6">
+                    <form action="{{ route('form_saran.store') }}" method="POST" class="space-y-6">
+                        @csrf
                         
                         <div>
                             <label for="nama" class="block text-sm font-medium text-gray-700">Nama (Opsional)</label>
                             <input type="text" name="nama" id="nama" placeholder="Cth: Ahmad Fauzi" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('nama')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         
                         <div>
                             <label for="kategori" class="block text-sm font-medium text-gray-700">Kategori</label>
                             <select id="kategori" name="kategori" required class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="">Pilih Kategori</option>
-                                <option>Infrastruktur Air</option>
-                                <option>Sanitasi</option>
-                                <option>Pelayanan & Respons Petugas</option>
-                                <option>Edukasi & Sosialisasi</option>
-                                <option>Inovasi & Ide Baru</option>
-                                <option>Sistem & Aplikasi</option>
+                                <option value="infrastruktur_air">Infrastruktur Air</option>
+                                <option value="sanitasi">Sanitasi</option>
+                                <option value="pelayanan_respons">Pelayanan & Respons Petugas</option>
+                                <option value="edukasi_sosialisasi">Edukasi & Sosialisasi</option>
+                                <option value="inovasi_ide_baru">Inovasi & Ide Baru</option>
+                                <option value="sistem_aplikasi">Sistem & Aplikasi</option>
                             </select>
+                            @error('kategori')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         
                         <div>
@@ -72,6 +91,10 @@
                             <div class="mt-1">
                                 <textarea id="isi_saran" name="isi_saran" rows="5" required placeholder="Tuliskan saran, kritik, atau masukan Anda di sini" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md p-3"></textarea>
                             </div>
+                            @error('isi_saran')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+
                         </div>
                         
                         <div>
