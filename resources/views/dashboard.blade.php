@@ -36,52 +36,54 @@
         <h3 class="text-lg font-semibold">Laporan Terbaru</h3>
         <a href="{{ route('admin.daftar_laporan') }}" class="text-blue-600 hover:underline">Lihat Semua</a>
     </div>
-    <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
-            <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kecamatan, Kelurahan</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-            </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-            @forelse($laporans as $laporan)
-            @php
-                $latest = $laporan->latestRiwayat ?? null;
-                $status = strtolower($latest->status ?? $laporan->status ?? 'menunggu');
-
-                // Map status to label and badge classes to match RiwayatLaporanSeeder
-                $statusMap = [
-                    'menunggu' => ['label' => 'Menunggu', 'class' => 'bg-blue-100 text-blue-700'],
-                    'terverifikasi' => ['label' => 'Terverifikasi', 'class' => 'bg-indigo-100 text-indigo-700'],
-                    'diproses' => ['label' => 'Diproses', 'class' => 'bg-yellow-100 text-yellow-700'],
-                    'selesai' => ['label' => 'Selesai', 'class' => 'bg-green-100 text-green-700'],
-                    'dikembalikan' => ['label' => 'Dikembalikan', 'class' => 'bg-red-100 text-red-600'],
-                ];
-
-                $statusLabel = $statusMap[$status]['label'] ?? ucfirst($status);
-                $badgeClass = $statusMap[$status]['class'] ?? 'bg-blue-100 text-blue-700';
-            @endphp
-            <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500 underline"><a href="{{ route('admin.detail_laporan', ['id' => $laporan->id]) }}">{{ sprintf('%05d', $laporan->id) }}</a></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{{ $laporan->user->name ?? $laporan->display_name ?? 'ANONIM' }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->location_display ?? ($laporan->kelurahan . ', ' . $laporan->kecamatan) }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->created_at->format('d M Y') }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->kategori }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <span class="px-3 py-1 {{ $badgeClass }} text-xs font-medium rounded-lg">{{ $statusLabel }}</span>
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada laporan terbaru.</td>
-            </tr>
-            @endforelse
-        </tbody>
-    </table>
+    <div class="overflow-hidden">
+        <table class="w-full text-left text-sm">
+            <thead class="bg-gray-50 border-b-2 border-gray-200">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Pelapor</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lokasi</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kategori</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                @forelse($laporans as $laporan)
+                @php
+                    $currentStatus = $laporan->latestRiwayat ? strtolower($laporan->latestRiwayat->status) : strtolower($laporan->status);
+                @endphp
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">
+                        {{ str_pad($laporan->id, 5, '0', STR_PAD_LEFT) }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->user->name ?? 'ANONIM' }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->kelurahan }}, {{ $laporan->kecamatan }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->created_at->format('d M Y') }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->kategori }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold
+                            @if($currentStatus == 'menunggu') bg-gray-500 text-white
+                            @elseif($currentStatus == 'terverifikasi') bg-blue-500 text-white
+                            @elseif($currentStatus == 'diproses') bg-yellow-500 text-white
+                            @elseif($currentStatus == 'selesai') bg-green-500 text-white
+                            @elseif($currentStatus == 'dikembalikan') bg-red-500 text-white
+                            @endif
+                        ">{{ ucfirst(str_replace('_', ' ', $currentStatus)) }}</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        <a href="{{ route('admin.detail_laporan', $laporan->id) }}" class="text-blue-600 hover:text-blue-800 font-medium">Detail</a>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="7" class="px-6 py-4 text-center text-gray-500">Tidak ada laporan terbaru.</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- Recent Suggestions -->

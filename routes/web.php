@@ -24,9 +24,8 @@ Route::get('/dashboard/detail_laporan/{id}', [DetailLaporanController::class, 's
 Route::post('/dashboard/detail_laporan/{id}', [DetailLaporanController::class, 'update'])
     ->name('admin.update_detail_laporan');
 
-Route::get('/dashboard/daftar_laporan', function () {
-    return view('daftar_laporan');
-})->name('admin.daftar_laporan');
+Route::get('/dashboard/daftar_laporan', [DashboardController::class, 'daftarLaporan'])
+    ->name('admin.daftar_laporan');
 
 Route::get('/dashboard/kotak_saran', function () {
     return view('kotak_saran');
