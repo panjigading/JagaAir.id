@@ -26,6 +26,7 @@ return new class extends Migration
             
             // Timestamp perubahan status
             $table->timestamp('tanggal')->useCurrent();
+            $table->timestamps();
             
             // Indexes untuk optimasi query
             $table->index('id_laporan');
