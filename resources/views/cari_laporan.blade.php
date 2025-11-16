@@ -195,7 +195,7 @@
                     @foreach($laporans as $laporan)
                         <div class="report-card bg-white rounded-xl shadow-md overflow-hidden">
                             <div class="flex flex-col sm:flex-row">
-                                <img src="{{ asset($laporan->url_bukti) }}" alt="Laporan" class="w-full sm:w-1/3 h-48 sm:h-auto object-cover">
+                                <img src="{{ asset('storage/' . $laporan->url_bukti) }}" alt="Laporan" class="w-full sm:w-1/3 h-48 sm:h-auto object-cover">
                                 <div class="p-4 flex-1">
                                     <div class="space-y-2 text-sm text-gray-600 mb-3">
                                         <div class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-xs text-blue-500"></i> {{ $laporan->kelurahan }}, {{ $laporan->kecamatan }}</div>

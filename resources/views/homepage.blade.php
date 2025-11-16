@@ -325,45 +325,64 @@
     <h2 class="section-title">Buat Laporan Baru</h2>
     <div class="laporan-container">
       <div class="laporan-form-wrapper">
-        <form class="laporan-form">
+        <form class="laporan-form" method="POST" action="{{ route('buat_laporan') }}" enctype="multipart/form-data">
+          @csrf
           <div class="form-group">
             <label for="jenis-masalah" class="form-label">Jenis Masalah</label>
-            <select id="jenis-masalah" class="form-select">
+            <select id="jenis-masalah" class="form-select" name="kategori">
               <option value="">Pilih jenis masalah</option>
-              <option value="infrastruktur-air">Infrastruktur Air</option>
-              <option value="sanitasi">Sanitasi</option>
-              <option value="pencemaran-air">Pencemaran Air</option>
-              <option value="bencana-terkait-air">Bencana Terkait Air</option>
+              <option value="Infrastruktur Air">Infrastruktur Air</option>
+              <option value="Sanitasi">Sanitasi</option>
+              <option value="Pencemaran Air">Pencemaran Air</option>
+              <option value="Bencana Terkait Air">Bencana Terkait Air</option>
             </select>
+            @error('kategori')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
           </div>
 
           <div class="form-group">
             <label for="lokasi" class="form-label">Kecamatan</label>
-            <select id="kecamatanDropdown" class="form-select">
+            <select id="kecamatanDropdown" class="form-select" name="kecamatan">
                 <option value="">Pilih Kecamatan</option>
             </select>
+            @error('kecamatan')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
           </div>
 
           <div class="form-group">
             <label for="lokasi" class="form-label">Kelurahan</label>
-            <select id="kelurahanDropdown" class="form-select">
+            <select id="kelurahanDropdown" class="form-select" name="kelurahan">
                 <option value="">Pilih Kelurahan</option>
             </select>
+            @error('kategori')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
           </div>
 
           <div class="form-group">
             <label for="lokasi" class="form-label">Lokasi Masalah</label>
-            <input type="text" id="lokasi" class="form-input" placeholder="Masukkan Link Google Maps atau Alamat Lengkap">
+            <input type="text" id="lokasi" class="form-input" name="alamat_lengkap" placeholder="Masukkan Link Google Maps atau Alamat Lengkap">
+            @error('alamat_lengkap')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
           </div>
 
           <div class="form-group">
             <label for="deskripsi" class="form-label">Deskripsi Masalah</label>
-            <textarea id="deskripsi" class="form-textarea" placeholder="Jelaskan masalah yang Anda alami" rows="4"></textarea>
+            <textarea id="deskripsi" class="form-textarea" name="detail" placeholder="Jelaskan masalah yang Anda alami" rows="4"></textarea>
+            @error('detail')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
           </div>
 
           <div class="form-group">
             <label for="foto" class="form-label">Lampirkan Foto</label>
-            <input type="file" id="foto" class="form-input" accept="image/*">
+            <input type="file" id="foto" class="form-input" name="url_bukti" accept="image/*">
+            @error('url_bukti')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
           </div>
 
           <button type="submit" class="btn-submit">Kirim Laporan</button>

@@ -5,9 +5,58 @@ namespace App\Http\Controllers;
 use App\Models\Laporan;
 use App\Models\RiwayatLaporan;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class LaporanController extends Controller
 {
+    public function buatLaporan(Request $request)
+    {
+        $validKategori = [
+            'Infrastruktur Air', 
+            'Sanitasi', 
+            'Pencemaran Air', 
+            'Bencana Terkait Air'
+        ];
+
+        try {
+            $validatedData = $request->validate([
+                'kategori' => ['required', 'string', Rule::in($validKategori)], 
+                'kecamatan' => 'required|string|max:100',
+                'kelurahan' => 'required|string|max:100',
+                'alamat_lengkap' => 'nullable|string|max:255',
+                'detail' => 'required|string|min:20',
+                'url_bukti' => 'required|file|mimes:jpeg,png,jpg,mp4,mov,avi|max:25600',
+            ]);
+
+            $path = $request->file('url_bukti')->store('laporan_bukti', 'public');
+            
+            Laporan::create([
+                'user_id' => auth()->id(),
+                'kategori' => $validatedData['kategori'],
+                'kecamatan' => $validatedData['kecamatan'],
+                'kelurahan' => $validatedData['kelurahan'],
+                'alamat_lengkap' => $validatedData['alamat_lengkap'],
+                'detail' => $validatedData['detail'],
+                'url_bukti' => $path, 
+            ]);
+
+            return redirect()->route('cari_laporan')->with('success', 'Laporan Anda telah berhasil diajukan!');
+        } catch (ValidationException $e) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors($e->errors())
+                ->withFragment('buat-laporan');
+        } catch (\Exception $e) {
+            $errorMessage = 'Terjadi kesalahan tak terduga. Silakan hubungi administrator.';
+            
+            return redirect()->back()
+                ->withInput()
+                ->with('error', $errorMessage)
+                ->withFragment('laporan-form');
+        }
+    }
+
     /**
      * Tampilkan halaman cari laporan dengan filter & search
      */
@@ -75,7 +124,7 @@ class LaporanController extends Controller
             'category' => $laporan->kategori,
             'location' => $laporan->kelurahan . ', ' . $laporan->kecamatan,
             'full_address' => $laporan->alamat_lengkap,
-            'photos' => [$laporan->url_bukti],
+            'url_bukti' => $laporan->url_bukti,
             'status' => $currentStatus,
             'detail' => $laporan->detail,
             'updates' => $laporan->riwayats()->orderBy('tanggal', 'asc')->get()->map(function($riwayat) {

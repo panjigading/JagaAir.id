@@ -13,6 +13,8 @@ Route::get('/', function () {
     return view('homepage');
 })->name('home');
 
+Route::post('/buat_laporan', [LaporanController::class, 'buatLaporan'])->name('buat_laporan');
+
 Route::get('/profil', function () {
     return view('profil');
 })->name('profil');
