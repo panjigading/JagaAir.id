@@ -12,20 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('saran', function (Blueprint $table) {
-            $table->id('id_saran'); // Primary Key
+            $table->id('id_saran');
             $table->date('tanggal');
             $table->string('kategori', 100);
             $table->text('isi_saran');
             $table->timestamps();
 
-            // Relasi ke tabel pengguna
-            $table->foreignId('id_pengguna')->constrained('users')->onDelete('cascade');
+            $table->foreignId('id_pengguna')->nullable()
+                ->constrained('users')->onDelete('cascade');
         });
     }
 
-    /**
-     * Balikkan migrasi.
-     */
     public function down(): void
     {
         Schema::dropIfExists('saran');
