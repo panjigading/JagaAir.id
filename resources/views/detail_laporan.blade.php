@@ -68,8 +68,8 @@
                 <label class="block text-sm text-slate-600">Ubah Status</label>
                 <div class="relative mt-1">
                     <select name="status" class="appearance-none bg-white block w-full rounded border border-gray-200 px-3 py-2 pr-10 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-200">
-                        @foreach(['Menunggu Verifikasi', 'Diproses', 'Selesai', 'Dikembalikan'] as $status)
-                            <option value="{{ $status }}" @selected(old('status') == $status)>{{ $status }}</option>
+                        @foreach(['menunggu', 'diproses', 'selesai', 'dikembalikan'] as $status)
+                            <option value="{{ $status }}" @selected(old('status') == $status)>{{ Str::title($status) }}</option>
                         @endforeach
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center">

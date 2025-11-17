@@ -27,10 +27,10 @@ class DetailLaporanController extends Controller
     {
         try {
             $request->validate([
-                'status' => ['required', 'string', 'in:Menunggu Verifikasi,Diproses,Selesai,Dikembalikan'],
+                'status' => ['required', 'string', 'in:menunggu,diproses,selesai,dikembalikan'],
                 'tanggapan' => ['required', 'string', 'max:500'],
             ], [
-                'status.in' => 'The status must be one of: Menunggu Verifikasi, Diproses, Selesai, dan Dikembalikan.',
+                'status.in' => 'The status must be one of: Menunggu, Diproses, Selesai, dan Dikembalikan.',
             ]);
 
             $laporan = Laporan::findOrFail($id);
