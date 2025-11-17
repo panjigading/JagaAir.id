@@ -23,6 +23,14 @@
             <li><a href="{{ route('form_saran') }}" class="nav-link">Saran</a></li>
         </ul>
         <!-- Authentication Buttons -->
+        @auth('web')
+        <div class="navbar-auth">
+          <a href="{{ route('profil') }}">
+            <button class="btn-signin">Akun</button>
+          </a>
+        </div>
+        @endauth
+        @guest
         <div class="navbar-auth">
           <a href="{{ route('sign_in') }}">
             <button class="btn-signin">Sign In</button>
@@ -31,6 +39,7 @@
             <button class="btn-signup">Sign Up</button>
           </a>
         </div>
+        @endguest
       </div>
     </nav>
     <div class="bg-cover bg-center flex items-center justify-center min-h-screen p-4 border-b"

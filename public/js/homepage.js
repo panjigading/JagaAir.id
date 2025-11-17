@@ -494,8 +494,6 @@ function initInteractiveElements() {
     });
 
     submitBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-
       const buttonRect = this.getBoundingClientRect();
       const ripple = document.createElement('span');
       ripple.style.position = 'absolute';

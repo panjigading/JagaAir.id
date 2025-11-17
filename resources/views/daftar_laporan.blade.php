@@ -9,117 +9,82 @@
 @section('content')
 <h2 class="text-2xl font-bold mb-6">Daftar Laporan</h2>
 
-<!-- Filter Section -->
-<form method="GET" action="{{ route('admin.daftar_laporan') }}" class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-    
-    <!-- Tanggal -->
-    <div class="bg-white rounded-lg shadow p-4">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal</label>
-        <input type="text" id="dateRangePicker" name="tanggal_filter" 
-               class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
-               placeholder="Pilih rentang tanggal"
-               value="{{ request('tanggal_filter') }}" />
-    </div>
+<form class="flex items-center justify-between gap-4 mb-6">
+  <div class="flex gap-4 items-center">
+    <span class="text-gray-500">Filter:</span>
+    <select class="bg-white border border-gray-300 rounded py-2 px-4 leading-tight focus:outline-none focus:border-blue-500">
+        <option>Tanggal</option>
+        <option>Minggu lalu</option>
+        <option>Bulan lalu</option>
+    </select>
+    <select id="kecamatanDropdown" class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+        <option value="">Kecamatan</option>
+    </select>
+    <select id="kelurahanDropdown" class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+        <option value="">Kelurahan</option>
+    </select>
+    <select id="jenis-masalah" class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+      <option value="">Kategori</option>
+      <option value="infrastruktur-air">Infrastruktur Air</option>
+      <option value="sanitasi">Sanitasi</option>
+      <option value="pencemaran-air">Pencemaran Air</option>
+      <option value="bencana-terkait-air">Bencana Terkait Air</option>
+    </select>
+    <select class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
+      <option>Status</option>
+      <option value="Diproses">Diproses</option>
+      <option value="Ditangani">Ditangani</option>
+      <option value="Selesai">Selesai</option>
+      <option value="Dikembalikan">Dikembalikan</option>
+    </select>
+  </div>
+  <div>
+    <button type="reset" class="bg-white text-red-700 px-4 py-2 rounded hover:bg-red-200 focus:outline-none">
+        Reset
+    </button>
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">
+        Terapkan
+    </button>
+  </div>
+</form> 
 
-    <!-- Kecamatan -->
-    <div class="bg-white rounded-lg shadow p-4">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Kecamatan</label>
-        <select id="kecamatanDropdown" name="kecamatan" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-            <option value="">Pilih Kecamatan</option>
-        </select>
-    </div>
-
-    <!-- Kelurahan -->
-    <div class="bg-white rounded-lg shadow p-4">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Kelurahan</label>
-        <select id="kelurahanDropdown" name="kelurahan" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-            <option value="">Pilih Kelurahan</option>
-        </select>
-    </div>
-
-    <!-- Kategori -->
-    <div class="bg-white rounded-lg shadow p-4">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
-        <select name="kategori" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-            <option value="">Semua Kategori</option>
-            @foreach($kategori as $kat)
-                <option value="{{ $kat }}" {{ request('kategori') === $kat ? 'selected' : '' }}>{{ $kat }}</option>
-            @endforeach
-        </select>
-    </div>
-
-    <!-- Status -->
-    <div class="bg-white rounded-lg shadow p-4">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-        <select name="status" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-            <option value="">Semua Status</option>
-            @foreach($statuses as $stat)
-                <option value="{{ $stat }}" {{ request('status') === $stat ? 'selected' : '' }}>{{ ucfirst(str_replace('_', ' ', $stat)) }}</option>
-            @endforeach
-        </select>
-    </div>
-
-    <!-- Search Button -->
-    <div class="flex items-end col-span-1 md:col-span-4 gap-2">
-        <a href="{{ route('admin.daftar_laporan') }}" class="flex-1 px-6 py-2 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition font-medium text-center">
-            Reset
-        </a>
-        <button type="submit" class="flex-1 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition font-medium">
-            Terapkan
-        </button>
-    </div>
-</form>
-
-<!-- Results Counter -->
-<div class="mb-6">
-    <h3 class="text-lg font-semibold text-gray-700">Menampilkan {{ $laporans->count() }} laporan</h3>
-</div>
-
-<!-- Table -->
-@if($laporans->count() > 0)
-<div class="bg-white rounded-lg shadow overflow-hidden">
-    <table class="w-full text-left text-sm">
-        <thead class="bg-gray-50 border-b-2 border-gray-200">
-            <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Pelapor</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lokasi</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kategori</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
-            </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200">
-            @foreach($laporans as $laporan)
-            @php
-                $currentStatus = $laporan->latestRiwayat ? strtolower($laporan->latestRiwayat->status) : strtolower($laporan->status);
-            @endphp
-            <tr class="hover:bg-gray-50 transition">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">
-                    {{ str_pad($laporan->id, 5, '0', STR_PAD_LEFT) }}
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->user->name ?? 'ANONIM' }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->kelurahan }}, {{ $laporan->kecamatan }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->created_at->format('d M Y') }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $laporan->kategori }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <span class="px-3 py-1 rounded-full text-xs font-semibold
-                        @if($currentStatus == 'menunggu') bg-gray-500 text-white
-                        @elseif($currentStatus == 'terverifikasi') bg-blue-500 text-white
-                        @elseif($currentStatus == 'diproses') bg-yellow-500 text-white
-                        @elseif($currentStatus == 'selesai') bg-green-500 text-white
-                        @elseif($currentStatus == 'dikembalikan') bg-red-500 text-white
-                        @endif
-                    ">{{ ucfirst(str_replace('_', ' ', $currentStatus)) }}</span>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <a href="{{ route('admin.detail_laporan', $laporan->id) }}" class="text-blue-600 hover:text-blue-800 font-medium">Detail</a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+  <table class="w-full text-left text-sm">
+    <thead class="bg-gray-50">
+      <tr class="text-gray-700 border-b">
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NAME</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">KECAMATAN, KELURAHAN</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DATE</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CATEGORY</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($daftar_laporan as $laporan)
+      <tr class="border-b hover:bg-gray-50">
+        <td class="px-6 py-4 text-blue-500 underline"><a href="{{ route('admin.detail_laporan', $laporan->id) }}">{{ $laporan->id }}</a></td>
+        <td>{{ $laporan->pengguna->name ?? '(Anonim)' }}</td>
+        <td>{{ $laporan->kecamatan }}, {{ $laporan->kelurahan }}</td>
+        <td>{{ $laporan->created_at->format('d F Y') }}</td>
+        <td>{{ $laporan->kategori }}</td>
+        <td class="text-center">
+          @php
+            $currentStatus = $laporan->latestRiwayat->status;
+          @endphp
+          <span class="px-3 py-1 text-xs font-medium rounded-lg
+              @if($currentStatus == 'menunggu') bg-gray-500 text-white
+              @elseif($currentStatus == 'diproses') bg-yellow-500 text-white
+              @elseif($currentStatus == 'selesai') bg-green-500 text-white
+              @elseif($currentStatus == 'dikembalikan') bg-red-500 text-white
+              @endif">
+              {{ Str::title($currentStatus) }}
+          </span>
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
 </div>
 @else
 <div class="bg-blue-50 border border-blue-200 text-blue-800 px-6 py-4 rounded-lg text-center">

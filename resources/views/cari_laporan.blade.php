@@ -107,14 +107,23 @@
                         <li><a href="{{ route('form_saran') }}" class="nav-link">Saran</a></li>
                     </ul>
                     <!-- Authentication Buttons -->
+                            @auth('web')
                     <div class="navbar-auth">
-                        <a href="{{ route('sign_in') }}">
-                            <button class="btn-signin">Sign In</button>
-                        </a>
-                        <a href="{{ route('sign_up') }}">
-                            <button class="btn-signup">Sign Up</button>
-                        </a>
+                    <a href="{{ route('profil') }}">
+                        <button class="btn-signin">Akun</button>
+                    </a>
                     </div>
+                    @endauth
+                    @guest
+                    <div class="navbar-auth">
+                    <a href="{{ route('sign_in') }}">
+                        <button class="btn-signin">Sign In</button>
+                    </a>
+                    <a href="{{ route('sign_up') }}">
+                        <button class="btn-signup">Sign Up</button>
+                    </a>
+                    </div>
+                    @endguest
                 </div>
             </nav>
 
@@ -195,7 +204,7 @@
                     @foreach($laporans as $laporan)
                         <div class="report-card bg-white rounded-xl shadow-md overflow-hidden">
                             <div class="flex flex-col sm:flex-row">
-                                <img src="{{ asset($laporan->url_bukti) }}" alt="Laporan" class="w-full sm:w-1/3 h-48 sm:h-auto object-cover">
+                                <img src="{{ asset('storage/' . $laporan->url_bukti) }}" alt="Laporan" class="w-full sm:w-1/3 h-48 sm:h-auto object-cover">
                                 <div class="p-4 flex-1">
                                     <div class="space-y-2 text-sm text-gray-600 mb-3">
                                         <div class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-xs text-blue-500"></i> {{ $laporan->kelurahan }}, {{ $laporan->kecamatan }}</div>

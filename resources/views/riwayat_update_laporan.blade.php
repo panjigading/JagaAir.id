@@ -172,14 +172,23 @@
                 <li><a href="{{ route('form_saran') }}" class="nav-link">Saran</a></li>
             </ul>
             <!-- Authentication Buttons -->
+            @auth('web')
             <div class="navbar-auth">
-                <a href="{{ route('sign_in') }}">
-                    <button class="btn-signin">Sign In</button>
-                </a>
-                <a href="{{ route('sign_up') }}">
-                    <button class="btn-signup">Sign Up</button>
-                </a>
+            <a href="{{ route('profil') }}">
+                <button class="btn-signin">Akun</button>
+            </a>
             </div>
+            @endauth
+            @guest
+            <div class="navbar-auth">
+            <a href="{{ route('sign_in') }}">
+                <button class="btn-signin">Sign In</button>
+            </a>
+            <a href="{{ route('sign_up') }}">
+                <button class="btn-signup">Sign Up</button>
+            </a>
+            </div>
+            @endguest
         </div>
     </nav>
 
@@ -250,8 +259,15 @@
                     <!-- Single Photo Display -->
                     <div class="mb-4">
                         <h6 class="font-semibold mb-2">Dokumentasi Foto:</h6>
-                        @if(!empty($report['photos']))
-                            <img src="{{ asset($report['photos'][0]) }}" alt="Foto Laporan" class="report-photo">
+                        @if(!empty($report['url_bukti']))
+                            @if(in_array(pathinfo($report['url_bukti'], PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                            <img src="{{  asset('storage/' . $report['url_bukti']) }}" alt="Foto Laporan" class="report-photo">
+                            @else
+                            <video controls class="w-full max-w-sm">
+                                <source src="{{ asset('storage/' . $report['url_bukti']) }}" type="video/{{ pathinfo($filePath, PATHINFO_EXTENSION) }}">
+                                Browser Anda tidak mendukung tag video.
+                            </video>
+                            @endif
                         @else
                             <p class="text-gray-500">Tidak ada foto dokumentasi</p>
                         @endif

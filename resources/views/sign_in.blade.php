@@ -41,7 +41,7 @@
             <h2 class="text-2xl font-bold text-center text-gray-800 mb-2">Login to Account</h2>
             <p class="text-sm text-gray-500 text-center mb-6">Please enter your email and password to continue</p>
 
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('sign_in.create') }}">
                 @csrf
 
                 <div class="mb-4">

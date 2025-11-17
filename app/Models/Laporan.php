@@ -29,7 +29,7 @@ class Laporan extends Model
      */
     public function riwayats()
     {
-        return $this->hasMany(RiwayatLaporan::class, 'id_laporan', 'id');
+        return $this->hasMany(RiwayatLaporan::class, 'id_laporan');
     }
 
     /**
@@ -45,7 +45,7 @@ class Laporan extends Model
      */
     public function latestRiwayat()
     {
-        return $this->hasOne(RiwayatLaporan::class, 'id_laporan', 'id')->latest('tanggal');
+        return $this->hasOne(RiwayatLaporan::class, 'id_laporan', 'id')->ofMany('tanggal', 'max');
     }
 
     /**
