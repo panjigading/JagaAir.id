@@ -61,7 +61,7 @@
       </tr>
     </thead>
     <tbody>
-      @foreach ($daftar_laporan as $laporan)
+    @forelse ($daftar_laporan as $laporan)
       <tr class="border-b hover:bg-gray-50">
         <td class="px-6 py-4 text-blue-500 underline"><a href="{{ route('admin.detail_laporan', $laporan->id) }}">{{ $laporan->id }}</a></td>
         <td>{{ $laporan->pengguna->name ?? '(Anonim)' }}</td>
@@ -82,15 +82,14 @@
           </span>
         </td>
       </tr>
-      @endforeach
+      @empty
+      <tr class="bg-blue-50 border border-blue-200 text-blue-800 px-6 py-4 rounded-lg text-center">
+        <td class="text-lg font-medium">Tidak ada laporan yang sesuai dengan filter yang Anda pilih.</td>
+      </tr>
+      @endforelse
     </tbody>
   </table>
 </div>
-@else
-<div class="bg-blue-50 border border-blue-200 text-blue-800 px-6 py-4 rounded-lg text-center">
-    <p class="text-lg font-medium">Tidak ada laporan yang sesuai dengan filter yang Anda pilih.</p>
-</div>
-@endif
 
 <!-- Flatpickr Script untuk Date Range Picker -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
