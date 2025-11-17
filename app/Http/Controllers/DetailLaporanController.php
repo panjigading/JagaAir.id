@@ -35,12 +35,12 @@ class DetailLaporanController extends Controller
 
             $laporan = Laporan::findOrFail($id);
 
-            $laporan->riwayatLaporans()->create([
+            $laporan->riwayats()->create([
                 'tanggapan' => $request->tanggapan,
                 'status' => $request->status,
             ]);
 
-            Mail::to($laporan->pengguna->email)->send(new TanggapanLaporan($laporan));
+            Mail::to($laporan->user->email)->send(new TanggapanLaporan($laporan));
 
             return redirect()->route('admin.dashboard')
                              ->with('success', 'Status and response updated successfully.');

@@ -9,14 +9,12 @@
 @section('content')
 <h2 class="text-2xl font-bold mb-6">Daftar Laporan</h2>
 
-<form class="flex items-center justify-between gap-4 mb-6">
+<form class="flex-col items-center justify-between gap-4 mb-6 w-full">
   <div class="flex gap-4 items-center">
     <span class="text-gray-500">Filter:</span>
-    <select class="bg-white border border-gray-300 rounded py-2 px-4 leading-tight focus:outline-none focus:border-blue-500">
-        <option>Tanggal</option>
-        <option>Minggu lalu</option>
-        <option>Bulan lalu</option>
-    </select>
+    <input type="text" id="dateRangePicker" name="tanggal_filter" 
+            class="border border-gray-300 rounded-md py-2 px-4 focus:ring-2 focus:border-blue-500 focus:outline-none leading-tight"
+            placeholder="Rentang tanggal"/>
     <select id="kecamatanDropdown" class="bg-white border border-gray-300 rounded py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-blue-500">
         <option value="">Kecamatan</option>
     </select>
@@ -38,11 +36,11 @@
       <option value="Dikembalikan">Dikembalikan</option>
     </select>
   </div>
-  <div>
-    <button type="reset" class="bg-white text-red-700 px-4 py-2 rounded hover:bg-red-200 focus:outline-none">
+  <div class="flex mt-2 gap-2">
+    <button type="reset" class="bg-white text-red-700 px-4 py-2 rounded hover:bg-red-200 focus:outline-none text-sm">
         Reset
     </button>
-    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none text-sm">
         Terapkan
     </button>
   </div>

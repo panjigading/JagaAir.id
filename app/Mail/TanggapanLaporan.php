@@ -26,7 +26,7 @@ class TanggapanLaporan extends Mailable
      */
     public function envelope(): Envelope
     {
-        $latestStatus = $this->laporan->riwayatLaporans->first()->status ?? 'Updated';
+        $latestStatus = $this->laporan->riwayats->first()->status ?? 'Updated';
 
         return new Envelope(
             subject: "[Status Laporan Anda Telah Diperbarui - ({$latestStatus})",
@@ -42,7 +42,7 @@ class TanggapanLaporan extends Mailable
         return new Content(
             view: 'emails.tanggapan_laporan',
             with: [
-                'latestStatus' => $this->laporan->riwayatLaporans->first(),
+                'latestStatus' => $this->laporan->riwayats->first(),
             ]
         );
     }
