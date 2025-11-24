@@ -23,7 +23,7 @@
             </div>
 
             <div class="mt-3 text-sm text-slate-500">Nama Pelapor</div>
-            <div class="font-medium">{{ $detailLaporan->pengguna->name ?? '(Anonim)' }}</div>
+            <div class="font-medium">{{ $detailLaporan->user->name ?? '(Anonim)' }}</div>
 
             <div class="mt-3 text-sm text-slate-500">Kecamatan</div>
             <div class="font-medium">{{ $detailLaporan->kecamatan }}</div>
@@ -52,7 +52,7 @@
             <div class="text-sm text-slate-500">Bukti</div>
             <div class="mt-2">
                 <div class="mt-2 h-80">
-                    <img src="{{ $detailLaporan->url_bukti }}" class="h-full w-full object-cover rounded" alt="Bukti">
+                    <img src="{{ asset('storage/' . $detailLaporan->url_bukti) }}" class="h-full w-full object-cover rounded" alt="Bukti">
                 </div>
             </div>
         </div>
