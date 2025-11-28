@@ -40,7 +40,10 @@ class DetailLaporanController extends Controller
                 'status' => $request->status,
             ]);
 
-            Mail::to($laporan->user->email)->send(new TanggapanLaporan($laporan));
+            if ($laporan->user !== null) {
+                Mail::to($laporan->user->email)->send(new TanggapanLaporan($laporan));
+            }
+
 
             return redirect()->route('admin.dashboard')
                              ->with('success', 'Status and response updated successfully.');
